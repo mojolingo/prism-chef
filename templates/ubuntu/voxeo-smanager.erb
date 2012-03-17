@@ -1,0 +1,90 @@
+#!/bin/sh
+#
+# Startup script for program
+#
+# chkconfig: 35 55 25
+# description: Prism Service Control Manager
+# processname: smanager
+# pidfile: /var/run/voxeo-smanager.pid
+#
+### BEGIN INIT INFO
+# Provides:   voxeo_smanager
+# Required-Start: $remote_fs $syslog
+# Required-Stop:  $remote_fs $syslog
+# Default-Start:  2 3 4 5
+# Default-Stop:   0 1 6
+# Short-Description:  Voxeo Service Manager
+### END INIT INFO
+
+# Source function library.      This creates the operating environment for the process to be started
+if [ -r /etc/init.d/functions ]; then
+  . /etc/init.d/functions
+fi
+
+WaitForPidToExit() {
+  # check for a maximum of 60 seconds
+  local retry=60
+  local pid=`cat $PIDFILE`
+  local foundpid=
+
+  foundpid=$(ps -ef | grep $pid | awk '!/grep/ {print $2}')
+  while [ -n "$foundpid" -a "$retry" -gt 0 ]; do
+    sleep 1
+    echo -n "."
+    retry=$(($retry -1))
+    foundpid=$(ps -ef | grep $pid | awk '!/grep/ {print $2}')
+  done
+
+  # if Process still running, kill it
+  if [ -n "$foundpid" ] ; then
+    echo ""
+    echo $pid " is still running.  Kill it."
+    kill -9 `ps -ef | grep $pid | awk '!/grep/ {print $2}'`
+  fi
+}
+
+PIDFILE=/var/run/voxeo-smanager.pid
+
+case "$1" in
+  start)
+        echo -n "Starting  smanager: "
+  if [ -e $PIDFILE ]; then
+    echo "  smanager Already running.  Stop it first."
+    exit 1
+  fi
+    export HOME=/opt/voxeo/prism
+    export LD_LIBRARY_PATH=/opt/voxeo/prism/bin:/opt/voxeo/prism/lib:$LD_LIBRARY_PATH$
+  cd /opt/voxeo/prism/bin;  /opt/voxeo/prism/bin/prism service smanager PIDFILE=$PIDFILE 2>&1 >>/dev/null
+        echo
+        touch /var/lock/subsys/voxeo-smanager > /dev/null 2>&1
+        ;;
+  stop)
+        echo -n "Shutting down smanager: "
+  if [ -e $PIDFILE ]; then
+    kill `cat $PIDFILE`
+        WaitForPidToExit
+  else
+    echo "  smanager not running."
+  fi
+        echo
+        rm -f /var/lock/subsys/voxeo-smanager > /dev/null 2>&1
+        rm -f $PIDFILE
+        ;;
+  status)
+        status voxeo-smanager
+        ;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  reload)
+        echo -n "Reloading smanager: "
+        killproc voxeo-smanager -HUP
+        echo
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit 0

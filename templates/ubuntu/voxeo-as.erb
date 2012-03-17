@@ -1,0 +1,93 @@
+#!/bin/sh
+#
+# Startup script for program
+#
+# chkconfig: 35 55 25
+# description: Voxeo Prism Application Server
+# processname: AS
+# pidfile: /var/run/as.pid
+#
+### BEGIN INIT INFO
+# Provides:             voxeo_as
+# Required-Start:       $remote_fs $syslog voxeo_smanager
+# Required-Stop:        $remote_fs $syslog voxeo_smanager
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Voxeo PRISM Application Server
+### END INIT INFO
+
+# Source function library.      This creates the operating environment for the process to be started
+if [ -r /etc/init.d/functions ]; then
+  . /etc/init.d/functions
+fi
+
+WaitForPidToExit() {
+  # check for a maximum of 60 seconds
+  local retry=60
+  local pid=`cat $PIDFILE`
+  local foundpid=
+
+  foundpid=$(ps -ef | grep $pid | awk '!/grep/ {print $2}')
+  while [ -n "$foundpid" -a "$retry" -gt 0 ]; do
+    sleep 1
+    echo -n "."
+    retry=$(($retry -1))
+    foundpid=$(ps -ef | grep $pid | awk '!/grep/ {print $2}')
+  done
+
+  # if Process still running, kill it
+  if [ -n "$foundpid" ] ; then
+    echo ""
+    echo $pid " is still running.  Kill it."
+    kill -9 `ps -ef | grep $pid | awk '!/grep/ {print $2}'`
+  fi
+}
+
+PIDFILE=/var/run/voxeo-as.pid
+
+case "$1" in
+  start)
+        echo -n "Starting  AS: "
+  if [ -e $PIDFILE ]; then
+    echo "  AS Already running.  Stop it first."
+    exit 1
+  fi
+    export HOME=/opt/voxeo/prism
+    export LD_LIBRARY_PATH=/opt/voxeo/prism/bin:/opt/voxeo/prism/lib:$LD_LIBRARY_PATH$
+  cd /opt/voxeo/prism/bin;  /opt/voxeo/prism/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null
+
+        echo
+        touch /var/lock/subsys/voxeo-as > /dev/null 2>&1
+        ;;
+  stop)
+        echo -n "Shutting down AS: "
+        if [ -e $PIDFILE ]; then
+            kill `cat $PIDFILE`
+            WaitForPidToExit
+            rm -f /var/lock/subsys/voxeo-as > /dev/null 2>&1
+            rm -f $PIDFILE
+      else
+        echo "  AS not running."
+            rm -f /var/lock/subsys/voxeo-as
+            exit 1
+      fi
+        echo
+        ;;
+  status)
+        status voxeo-as
+        ;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  reload)
+        echo -n "Reloading AS: "
+        killproc voxeo-as -HUP
+        echo
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit 0

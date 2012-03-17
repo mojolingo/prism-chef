@@ -1,0 +1,9 @@
+maintainer       "John Dyer"
+maintainer_email "jdyer@voxeo.com"
+license          "All rights reserved"
+description      "Installs/Configures Prism application server http://voxeo.com/prism"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
+version          "1.0.0"
+
+depends "nokogiri"
+depends "artifacts"
