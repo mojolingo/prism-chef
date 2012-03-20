@@ -17,6 +17,9 @@ include_recipe "nokogiri"
 include_recipe "jmxsh"
 
 
+user node[:prism][:user] do
+  comment node[:prism][:user]
+  supports :manage_home => true
 end
 
 include_recipe "prism::install"
