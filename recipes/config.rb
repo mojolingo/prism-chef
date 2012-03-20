@@ -1,5 +1,5 @@
 path = node["prism"]["path"]["prism"]
-u = node["prism"]["user"]
+o = node["prism"]["user"]
 g = node["prism"]["group"]
 
 # Get default interfaces netmask if not specificed via a role attribute
@@ -7,7 +7,7 @@ node.set_unless[:prism][:netmask] = node[:network][:interfaces][node[:network][:
 
 template "#{path}/conf/vxlaunch.xml" do
   source "vxlaunch.xml.erb"
-  owner u
+  owner o
   group g
   mode 0644
 
@@ -24,7 +24,7 @@ template "#{path}/conf/sipmethod-users.xml" do
   :admin_username       =>  node[:prism][:sipmethod_users][:admin][:username],
   :admin_password       =>  node[:prism][:sipmethod_users][:admin][:password]
   })
-  owner u
+  owner o
   group g
   mode 0644
 
@@ -36,7 +36,7 @@ end
 
 template "#{path}/conf/portappmapping.properties" do
   source "portappmapping.properties.erb"
-  owner u
+  owner o
   group g
   mode 0644
 
@@ -47,7 +47,7 @@ end
 
 template "#{path}/conf/sipenv.properties" do
   source "sipenv.properties.erb"
-  owner u
+  owner o
   group g
   mode 0644
 
@@ -59,7 +59,7 @@ end
 
 template "#{path}/conf/log4j.properties" do
   source "log4j.properties.erb"
-  owner u
+  owner o
   group g
   mode 0644
 
@@ -72,7 +72,7 @@ end
 
 template "#{path}/bin/prism" do
   source "prism.erb"
-  owner u
+  owner o
   group g
   mode 0774
 
@@ -84,7 +84,7 @@ end
 
 template "#{path}/conf/vxlaunch.xml" do
   source "vxlaunch.xml.erb"
-  owner u
+  owner o
   group g
   mode 0644
   variables({
@@ -99,7 +99,7 @@ end
 
 template "#{path}/conf/config.xml" do
   source "config.xml.erb"
-  owner u
+  owner o
   group g
   mode 0644
   variables({
@@ -119,7 +119,7 @@ template "#{path}/conf/sipmethod.xml" do
   Chef::Log.debug "[LABS] ===> public_ipv4 #{node[:prism][:public_ipv4]}"
 
   source "sipmethod.xml.erb"
-  owner u
+  owner o
   group g
   variables(
   :osgi_enabled              => node[:prism][:osgi][:enabled],
