@@ -82,6 +82,14 @@ script "chown_files" do
   EOH
 end
 
+cookbook_file "#{prism_path}/jre/jre/lib/security/cacerts" do
+  source "cacerts"
+  owner o
+  group g
+  mode 0644
+  notifies :restart, "service[voxeo-as]"
+end
+
 %w(voxeo-as voxeo-ms voxeo-smanager).each do |srv|
   service srv do
     action [:enable]

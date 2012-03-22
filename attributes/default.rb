@@ -39,6 +39,10 @@ if node[:ec2]
   default[:prism][:nat_mode]         =  true
   default[:prism][:local_ipv4]       =  node[:ec2][:local_ipv4]
   default[:prism][:public_ipv4]      =  node[:ec2][:public_ipv4]
+elsif node[:openstack]
+  default[:prism][:nat_mode]         =  true
+  default[:prism][:local_ipv4]       =  node.ipaddress
+  default[:prism][:public_ipv4]      =  node[:openstack][:public_ipv4]
 else
   default[:prism][:local_ipv4]       =  node.ipaddress
   default[:prism][:public_ipv4]      =  nil
