@@ -129,6 +129,9 @@
     <item name="GainLevelIn">0</item>
     <item name="GainLevelOut">0</item>
   </category>
+  <% if node[:prism][:initial_rtp_clients_count] -%>
+  <item name="InitialRTPClientsCount"><%= node[:prism][:initial_rtp_clients_count] %></item>
+  <% end -%>
   <category name="SDPCodecs">
     <!--
       Setting to 0 will cause SDP answer to be formed is based on order of the codecs presented in the offer;
