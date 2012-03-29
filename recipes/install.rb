@@ -28,6 +28,13 @@ script "install_prism" do
   EOH
 end
 
+cookbook_file "/etc/profile.d/voxeo.sh" do
+  source "voxeo.sh"
+  mode 0777
+  owner o
+  group g
+end
+
 cookbook_file "#{prism_path}/conf/license.lic" do
   source node[:prism][:license_file]
   mode 0644
