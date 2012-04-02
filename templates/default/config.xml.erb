@@ -125,7 +125,10 @@
   RTP Library configuration
   -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-->
   <category name="Rtp">
-    <category name="Gain">
+  <% if node[:prism][:sdp_parser_page_size] -%>
+  <item name="SDPParserPageSize" type="int"> <%=node[:prism][:sdp_parser_page_size] %> </item>
+  <% end -%>
+  <category name="Gain">
     <item name="GainLevelIn">0</item>
     <item name="GainLevelOut">0</item>
   </category>
