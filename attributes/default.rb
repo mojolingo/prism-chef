@@ -22,8 +22,8 @@ default[:prism][:lock]          = "/var/lock/subsys"
 #
 # VXLAUNCH.XML SECTION
 ##############################################
-default["prism"]["VxLaunch"]["HTTPCtrlPort"]=10086
 default[:prism][:runtime_mode]                 =  "server"
+default[:prism][:VxLaunch][:http_control_port] =  10086
 
 default[:prism][:VxLaunch][:rtmpd][:enabled]=false
 default[:prism][:VxLaunch][:as][:cache]=60

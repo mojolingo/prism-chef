@@ -3,8 +3,8 @@
 <config version="1.0">
   <category name="config">
     <category name="VxLaunch">
-      <item name="HTTPCtrlPort" type="int"> <%= node["prism"]["VxLaunch"]["HTTPCtrlPort"] %></item>
       <item name="RuntimeMode"><%=node[:prism][:runtime_mode]%></item>
+      <item name="HTTPCtrlPort" type="int"> <%= node[:prism][:VxLaunch][:http_control_port] %></item>
       <item name="SCMServiceName"> smanager </item>
       <category name="GlobalThreadPool">
         <item name="InitialSize">5</item>
