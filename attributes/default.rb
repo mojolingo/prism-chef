@@ -8,8 +8,8 @@ default["prism"]["artifacts"]["url"]="http://prism-app-server.s3.amazonaws.com/1
 default["prism"]["artifacts"]["checksum"]='9c0c2c202ef947aa263c5f8cb3a840eaecfc016a105af85c221a4e1d14661b41'
 
 # By default we want to keep from installing tropo and sipoint
-default["prism"]["install"]["sip_point"]=false
-default["prism"]["install"]["tropo"]=false
+default[:prism][:install_sip_point] =  false
+default[:prism][:install_tropo]     =  false
 
 #
 # Init.d stuff
