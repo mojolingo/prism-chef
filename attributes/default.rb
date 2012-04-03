@@ -1,11 +1,11 @@
 #
 # GENERAL
 ##############################################
-default["prism"]["user"]="voxeo"
-default["prism"]["group"]="voxeo"
+default[:prism][:user]    = "voxeo"
+default[:prism][:group]   = "voxeo"
 
-default["prism"]["artifacts"]["url"]="http://prism-app-server.s3.amazonaws.com/11_5_0_C201203021407_0/prism-11_5_0_C201203021407_0-x64.bin"
-default["prism"]["artifacts"]["checksum"]='9c0c2c202ef947aa263c5f8cb3a840eaecfc016a105af85c221a4e1d14661b41'
+default[:prism][:artifacts][:url]="http://prism-app-server.s3.amazonaws.com/11_5_0_C201203021407_0/prism-11_5_0_C201203021407_0-x64.bin"
+default[:prism][:artifacts][:checksum]='9c0c2c202ef947aa263c5f8cb3a840eaecfc016a105af85c221a4e1d14661b41'
 
 # By default we want to keep from installing tropo and sipoint
 default[:prism][:install_sip_point] =  false
@@ -14,10 +14,10 @@ default[:prism][:install_tropo]     =  false
 #
 # Init.d stuff
 ##############################################
-default["prism"]["path"]["base"]="/opt/voxeo"
-default["prism"]["path"]["prism"]="#{node["prism"]["path"]["base"]}/prism"
-default["prism"]["pid"]="/var/run"
-default["prism"]["lock"]="/var/lock/subsys"
+default[:prism][:path][:base]   = "/opt/voxeo"
+default[:prism][:path][:prism]  = "#{node["prism"]["path"]["base"]}/prism"
+default[:prism][:pid]           = "/var/run"
+default[:prism][:lock]          = "/var/lock/subsys"
 
 #
 # VXLAUNCH.XML SECTION
@@ -189,15 +189,15 @@ default[:prism][:config][:Rtp][:SocketBuffer]   =  10000
 default[:prism][:config][:Rtp][:DTMFDuration]   =  120
 default[:prism][:config][:Rtp][:DTMFPause]   =  240
 
-default["prism"]["log4j"]["syslog"]["server"]="127.0.0.1:9977"
-default["prism"]["log4j"]["root_logger"]=%w(DEBUG FILE SYSLOG)
-default["prism"]["log4j"]["logger"]["voxeo"]=%w(DEBUG FILE_APP SYSLOG)
+default[:prism][:log4j][:syslog][:server]="127.0.0.1:9977"
+default[:prism][:log4j][:root_logger]=%w(DEBUG FILE SYSLOG)
+default[:prism][:log4j][:logger][:voxeo]=%w(DEBUG FILE_APP SYSLOG)
 
-default["prism"]["log4j"]["syslog"]["threshold"]="DEBUG"
-default["prism"]["log4j"]["syslog"]["tcp"]=false
+default[:prism][:log4j][:syslog][:threshold]="DEBUG"
+default[:prism][:log4j][:syslog][:tcp]=false
 
-default["prism"]["log4j"]["file"]["append"]=true
-default["prism"]["log4j"]["file"]["max_file_size"]='100MB'
-default["prism"]["log4j"]["file"]["max_backup_index"]=30
+default[:prism][:log4j][:file][:append]=true
+default[:prism][:log4j][:file][:max_file_size]='100MB'
+default[:prism][:log4j][:file][:max_backup_index]=30
 
 default[:prism][:license_file] = "license_25_ports.lic"
