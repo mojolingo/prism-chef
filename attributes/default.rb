@@ -132,6 +132,7 @@ default["prism"]["config"]["Rtp"]["DTMFDuration"]=120
 default["prism"]["config"]["Rtp"]["DTMFPause"]=240
 
 default[:prism][:sdp_parser_page_size] = nil
+default[:prism][:initial_rtp_clients_count] = nil
 
 default["prism"]["config"]["Media"]["ConferenceManagerURL"]="http://127.0.0.1:8080/com.voxeo.directory/"
 
