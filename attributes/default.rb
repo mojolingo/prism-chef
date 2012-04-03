@@ -178,10 +178,16 @@ default[:prism][:mrcp][:port]=10074
 default[:prism][:mcrp][:listen_ip] = "0.0.0.0"
 default[:prism][:mcrp][:log_level] = 8
 
-default["prism"]["config"]["IO"]["Proxys"]=[]
-default["prism"]["config"]["Log"]["SysLogServer"]=['localhost:9977']
-default["prism"]["config"]["Rtp"]["SDPCodecs"]=[]
-default["prism"]["config"]["ASR"]["vxsremrcp"]=[]
+default[:prism][:config][:IO][:Proxys]  = []
+default[:prism][:config][:Log][:SysLogServer]  = ['localhost:9977']
+default[:prism][:config][:ASR][:vxsremrcp]  = []
+
+default[:prism][:config][:Rtp][:SDPCodecs]  = []
+default[:prism][:config][:Rtp][:BasePort]   =  20000
+default[:prism][:config][:Rtp][:PayloadSize]   =  160
+default[:prism][:config][:Rtp][:SocketBuffer]   =  10000
+default[:prism][:config][:Rtp][:DTMFDuration]   =  120
+default[:prism][:config][:Rtp][:DTMFPause]   =  240
 
 default["prism"]["log4j"]["syslog"]["server"]="127.0.0.1:9977"
 default["prism"]["log4j"]["root_logger"]=%w(DEBUG FILE SYSLOG)
