@@ -95,6 +95,16 @@ cookbook_file "#{prism_path}/jre/jre/lib/security/cacerts" do
   group g
   mode 0644
   notifies :restart, "service[voxeo-as]"
+  only_if { FileTest.exist?("#{prism_path}/jre/jre/lib/security/cacerts")}
+end
+
+cookbook_file "#{prism_path}/jre/lib/security/cacerts" do
+  source "cacerts"
+  owner o
+  group g
+  mode 0644
+  notifies :restart, "service[voxeo-as]"
+  only_if { FileTest.exist?("#{prism_path}/jre/lib/security/cacerts")}
 end
 
 %w(voxeo-as voxeo-ms voxeo-smanager).each do |srv|
