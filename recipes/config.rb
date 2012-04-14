@@ -5,18 +5,6 @@ g = node["prism"]["group"]
 # Get default interfaces netmask if not specificed via a role attribute
 node.set_unless[:prism][:netmask] = node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask]
 
-template "#{path}/conf/vxlaunch.xml" do
-  source "vxlaunch.xml.erb"
-  owner o
-  group g
-  mode 0644
-
-  only_if { Prism.mrcp_sessions(node["ipaddress"]) == 0 }
-
-  notifies :restart, resources(:service => "voxeo-as")
-  notifies :restart, resources(:service => "voxeo-ms")
-end
-
 template "#{path}/conf/sipmethod-users.xml" do
   source "sipmethod-users.xml.erb"
   variables({
