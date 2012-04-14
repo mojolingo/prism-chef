@@ -112,3 +112,7 @@ end
     action [:enable]
   end
 end
+
+if node[:prism][:enable_webhosting]
+  include_recipe "prism::webhosting"
+end

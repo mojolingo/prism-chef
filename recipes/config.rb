@@ -126,6 +126,7 @@ template "#{path}/conf/sipmethod.xml" do
   :mrcp_ip                   => node[:prism][:local_ipv4], #node["ec2"] ? node["ec2"]["public_ipv4"] : node["prism"]["config"]["MRCPSRV"]["IP"] , # Ticket: 1615349
   :mrcp_port                 => node[:prism][:mrcp][:port],
   :address                   => node[:prism][:local_ipv4],
+  :web_dirs                  => [node[:prism][:cust_home]],
   :relay_address             => node[:prism][:public_ipv4],
   :relay_port                => node[:prism][:relay_port],
   :xmpp_client_port          => node[:prism][:xmpp_client_port],
