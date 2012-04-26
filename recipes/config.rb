@@ -3,7 +3,7 @@ o = node["prism"]["user"]
 g = node["prism"]["group"]
 
 # Get default interfaces netmask if not specificed via a role attribute
-node.set_unless[:prism][:netmask] = node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask]
+#node[:prism][:netmask] = node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask]
 
 template "#{path}/conf/sipmethod-users.xml" do
   source "sipmethod-users.xml.erb"

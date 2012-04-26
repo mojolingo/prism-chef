@@ -53,7 +53,13 @@ else
 end
 
 default[:prism][:relay_port]         =  5060
-default[:prism][:netmask]            =  node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask] #=""
+#set_unless[:prism][:netmask]         =  nil
+
+default[:prism][:netmask]         =  begin
+  node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask] #=""
+rescue Exception => e
+  "255.255.255.0"
+end
 
 #
 # Log section of vxlaunch.xml
