@@ -30,7 +30,7 @@ end
 
 cookbook_file "/etc/profile.d/voxeo.sh" do
   source "voxeo.sh"
-  mode 0777
+  mode 0770
   owner o
   group g
 end
@@ -58,7 +58,7 @@ template "/etc/init.d/voxeo-as" do
   source "voxeo-as.erb"
   owner o
   group g
-  mode 0700
+  mode 0770
 
   notifies :enable, "service[voxeo-as]", :immediately
 end
@@ -67,14 +67,14 @@ template "/etc/init.d/voxeo-ms" do
   source "voxeo-ms.erb"
   owner o
   group g
-  mode 0700
+  mode 0770
 
   notifies :enable, "service[voxeo-ms]", :immediately
 end
 
 template "/etc/init.d/voxeo-smanager" do
   source "voxeo-smanager.erb"
-  mode 0700
+  mode 0770
   owner o
   group g
 
