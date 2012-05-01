@@ -53,6 +53,23 @@
       <item name="Priority"> </item>
     </category>
   <% end -%>
+   <% if node[:prism][:VxLaunch][:panda][:enabled] -%>
+    <category name="panda">
+      <item name="LongName">Panda</item>
+      <item name="exe" platform="linux"><%=node[:prism][:panda][:dir]%>/bin/bamboo.py</item>
+      <item name="Default" platform="linux"><%=node[:prism][:panda][:dir]%>/conf/bamboo.conf</item>
+      <item name="cwd">2</item>
+      <item name="CwdDir"><%=node[:prism][:panda][:dir]%></item>
+      <item name="description"> Launches Panda </item>
+      <item name="StartupTimeout" type="int">30</item>
+      <item name="ShutdownOptions" type="int">4</item>
+      <item name="ShutdownTimeout" type="int">30</item>
+      <item name="SyslogServer">1</item>
+      <item name="ExitCodes"/>
+      <item name="AppType" type="int">65</item>
+      <item name="Priority"> </item>
+    </category>
+  <% end -%>
     <category name="as-debug">
       <item name="LongName"> Voxeo Prism Application Server Debug Mode </item>
       <item name="Java"> true </item>
