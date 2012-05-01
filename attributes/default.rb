@@ -2,7 +2,7 @@
 # GENERAL
 ##############################################
 default[:prism][:user]    = "voxeo"
-default[:prism][:group]   = "voxeo"
+default[:prism][:group]   = "sysadmin"
 
 default[:prism][:artifacts][:url]       =  "http://prism-app-server.s3.amazonaws.com/11_5_0_C201203021407_0/prism-11_5_0_C201203021407_0-x64.bin"
 default[:prism][:artifacts][:checksum]  =  '9c0c2c202ef947aa263c5f8cb3a840eaecfc016a105af85c221a4e1d14661b41'
