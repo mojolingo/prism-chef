@@ -283,7 +283,7 @@
    <item name="EngineMappings">
      <%= node["prism"]["config"]["ASR"]["EngineMappings"].map{|eng|"#{eng[:lang]}=#{eng[:engine]}"}.join ",\n\t" %>
    </item>
-   <item name="BuiltInGrammars">http://localhost:8080/com.voxeo.prism.msctrl/grammars/en-us/DIGITS.jsgf</item>
+   <item name="BuiltInGrammars"><%= node["prism"]["path"]["prism"]%>/server/apps/com.voxeo.prism.msctrl/grammars/en-us</item>
    <category name="VXSREPR">
      <category name="Cache">
        <item name="DiskCache"> <%= node["prism"]["path"]["prism"]%>/Cache/Grammars </item>
