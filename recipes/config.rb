@@ -76,7 +76,8 @@ template "#{path}/conf/vxlaunch.xml" do
   group g
   mode 0664
   variables({
-    :glibc_hack => Prism.requires_glibc_patch(node[:kernel][:machine])
+    :glibc_hack => Prism.requires_glibc_patch(node[:kernel][:machine]),
+    :prism_home => path
   })
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
