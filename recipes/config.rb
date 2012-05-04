@@ -1,6 +1,6 @@
-path = node["prism"]["path"]["prism"]
-o = node["prism"]["user"]
-g = node["prism"]["group"]
+path =  node[:prism][:path][:prism]
+o    =  node[:prism][:user]
+g    =  node[:prism][:group]
 
 # Get default interfaces netmask if not specificed via a role attribute
 #node[:prism][:netmask] = node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask]
@@ -16,7 +16,7 @@ template "#{path}/conf/sipmethod-users.xml" do
   group g
   mode 0644
 
-  only_if  { Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if  { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
@@ -28,7 +28,7 @@ template "#{path}/conf/portappmapping.properties" do
   group g
   mode 0644
 
-  only_if { Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 
   notifies :restart, resources(:service => "voxeo-as")
 end
@@ -42,7 +42,7 @@ template "#{path}/conf/sipenv.properties" do
 
   notifies :restart, resources(:service => "voxeo-as")
 
-  only_if { Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 end
 
 template "#{path}/conf/log4j.properties" do
@@ -54,7 +54,7 @@ template "#{path}/conf/log4j.properties" do
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
 
-  only_if { Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 end
 
 
@@ -67,7 +67,7 @@ template "#{path}/bin/prism" do
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
 
-  only_if { Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 end
 
 template "#{path}/conf/vxlaunch.xml" do
@@ -81,7 +81,7 @@ template "#{path}/conf/vxlaunch.xml" do
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
 
-  only_if{ Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if{ Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 
 end
 
@@ -98,7 +98,7 @@ template "#{path}/conf/config.xml" do
 
   notifies :restart, resources(:service => "voxeo-ms")
 
-  only_if{ Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if{ Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 end
 
 template "#{path}/conf/sipmethod.xml" do
@@ -121,8 +121,8 @@ template "#{path}/conf/sipmethod.xml" do
   :xmpp_server_port          => node[:prism][:xmpp_server_port],
   :http_port                 => node[:prism][:http_port],
   :use_loop_back_address     => node[:prism][:use_loop_back_address],
-  :udp_network_access_points => node["prism"]["sipmethod"]["NetworkAccessPoint"]["udp"],
-  :tcp_network_access_points => node["prism"]["sipmethod"]["NetworkAccessPoint"]["tcp"],
+  :udp_network_access_points => node[:prism][:sipmethod][:NetworkAccessPoint][:udp],
+  :tcp_network_access_points => node[:prism][:sipmethod][:NetworkAccessPoint][:tcp],
   :peers                     => search(:node, "role:#{node.roles.include?('rayo_gateway') ? 'rayo_gateway' : 'rayo_node'} AND chef_environment:#{node.chef_environment} NOT name:#{node.name}")
   )
   mode 0644
@@ -130,5 +130,5 @@ template "#{path}/conf/sipmethod.xml" do
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
 
-  only_if{ Prism.mrcp_sessions(node["ipaddress"]) == 0 }
+  only_if{ Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 end

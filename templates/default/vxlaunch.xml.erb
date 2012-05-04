@@ -73,7 +73,7 @@
     <category name="as-debug">
       <item name="LongName"> Voxeo Prism Application Server Debug Mode </item>
       <item name="Java"> true </item>
-      <item name="OpenFileMax" platform="linux" type="int"><%= node["prism"]["VxLaunch"]["Commands"]["as-debug"]["OpenFileMax"] %></item>
+      <item name="OpenFileMax" platform="linux" type="int"><%= node[:prism][:VxLaunch][:Commands][:as-debug][:OpenFileMax] %></item>
       <category name="java">
         <category name="classpath">
           <item>/opt/voxeo/prism/lib/jars/*.jar</item>
@@ -107,7 +107,7 @@
       <item name="exe" platform="osx">      /Library/Java/Home/bin/java</item>
       <item name="exe" platform="win">     /opt/voxeo/prism\jre\bin\java.exe  </item>
       <item name="description"> Launches Voxeo Prism Application Server Debug Model</item>
-      <item name="Invoke" platform="linux"> -server -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y -Xms<%= node["prism"]["VxLaunch"]["Commands"]["as-debug"]["Xms"]%> -Xmx<%= node["prism"]["VxLaunch"]["Commands"]["as-debug"]["Xmx"]%> -XX:NewRatio=2 -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:MaxPermSize=<%= node["prism"]["VxLaunch"]["Commands"]["as-debug"]["MaxPermSize"] %> -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled org.tanukisoftware.wrapper.WrapperSimpleApp com.micromethod.sipmethod.server.Launcher -start</item>
+      <item name="Invoke" platform="linux"> -server -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y -Xms<%= node[:prism][:VxLaunch][:Commands][:as-debug][:Xms]%> -Xmx<%= node[:prism][:VxLaunch][:Commands][:as-debug][:Xmx]%> -XX:NewRatio=2 -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:MaxPermSize=<%= node[:prism][:VxLaunch][:Commands][:as-debug][:MaxPermSize] %> -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled org.tanukisoftware.wrapper.WrapperSimpleApp com.micromethod.sipmethod.server.Launcher -start</item>
       <item name="AppType" type="int">0</item>
       <item name="ExitCodes"> ,7056,143, </item>
       <item name="StartupTimeout" type="int">600</item>
@@ -156,7 +156,7 @@
     <category name="as">
       <item name="LongName"> Voxeo Prism Application Server </item>
       <item name="Java"> true </item>
-      <item name="OpenFileMax" platform="linux" type="int"><%= node["prism"]["VxLaunch"]["Commands"]["as"]["OpenFileMax"] %></item>
+      <item name="OpenFileMax" platform="linux" type="int"><%= node[:prism][:VxLaunch][:Commands][:as][:OpenFileMax] %></item>
       <category name="java">
         <category name="classpath">
           <item>/opt/voxeo/prism/lib/jars/*.jar</item>
@@ -196,7 +196,7 @@
       <item name="exe" platform="osx">      /Library/Java/Home/bin/java</item>
       <item name="exe" platform="win">     /opt/voxeo/prism\jre\bin\java.exe  </item>
       <item name="description"> Launches Voxeo Prism Application Server</item>
-      <item name="Invoke" platform="linux"> -server -Xms<%= node["prism"]["VxLaunch"]["Commands"]["as"]["Xms"]%> -Xmx<%= node["prism"]["VxLaunch"]["Commands"]["as"]["Xmx"]%> -XX:NewRatio=2 -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:MaxPermSize=<%=node["prism"]["VxLaunch"]["Commands"]["as"]["MaxPermSize"]%> -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled org.tanukisoftware.wrapper.WrapperSimpleApp com.micromethod.sipmethod.server.Launcher -start</item>
+      <item name="Invoke" platform="linux"> -server -Xms<%= node[:prism][:VxLaunch][:Commands][:as][:Xms]%> -Xmx<%= node[:prism][:VxLaunch][:Commands][:as][:Xmx]%> -XX:NewRatio=2 -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:MaxPermSize=<%=node[:prism][:VxLaunch][:Commands][:as][:MaxPermSize]%> -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled org.tanukisoftware.wrapper.WrapperSimpleApp com.micromethod.sipmethod.server.Launcher -start</item>
       <item name="AppType" type="int">65</item>
       <item name="ExitCodes"> ,7056,143, </item>
       <item name="StartupTimeout" type="int">600</item>
