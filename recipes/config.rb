@@ -14,7 +14,7 @@ template "#{path}/conf/sipmethod-users.xml" do
   })
   owner o
   group g
-  mode 0644
+  mode 0664
 
   only_if  { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 
@@ -26,7 +26,7 @@ template "#{path}/conf/portappmapping.properties" do
   source "portappmapping.properties.erb"
   owner o
   group g
-  mode 0644
+  mode 0664
 
   only_if { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 
@@ -37,7 +37,7 @@ template "#{path}/conf/sipenv.properties" do
   source "sipenv.properties.erb"
   owner o
   group g
-  mode 0644
+  mode 0664
 
 
   notifies :restart, resources(:service => "voxeo-as")
@@ -49,7 +49,7 @@ template "#{path}/conf/log4j.properties" do
   source "log4j.properties.erb"
   owner o
   group g
-  mode 0644
+  mode 0664
 
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
@@ -74,7 +74,7 @@ template "#{path}/conf/vxlaunch.xml" do
   source "vxlaunch.xml.erb"
   owner o
   group g
-  mode 0644
+  mode 0664
   variables({
     :glibc_hack => Prism.requires_glibc_patch(node[:kernel][:machine])
   })
@@ -89,7 +89,7 @@ template "#{path}/conf/config.xml" do
   source "config.xml.erb"
   owner o
   group g
-  mode 0644
+  mode 0664
   variables({
     :local_ipv4     => node[:prism][:local_ipv4],
     :public_ipv4    => node[:prism][:public_ipv4],
@@ -125,7 +125,7 @@ template "#{path}/conf/sipmethod.xml" do
   :tcp_network_access_points => node[:prism][:sipmethod][:NetworkAccessPoint][:tcp],
   :peers                     => search(:node, "role:#{node.roles.include?('rayo_gateway') ? 'rayo_gateway' : 'rayo_node'} AND chef_environment:#{node.chef_environment} NOT name:#{node.name}")
   )
-  mode 0644
+  mode 0664
 
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
