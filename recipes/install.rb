@@ -107,6 +107,14 @@ cookbook_file "#{prism_path}/jre/lib/security/cacerts" do
   only_if { FileTest.exist?("#{prism_path}/jre/lib/security/cacerts")}
 end
 
+cookbook_file "#{prism_path}/config/ssl_ca_bundle.crt" do
+  source "ssl_ca_bundle.crt"
+  owner o
+  group g
+  mode 0664
+  notifies :restart, "service[voxeo-ms]"
+end
+
 %w(voxeo-as voxeo-ms voxeo-smanager).each do |srv|
   service srv do
     action [:enable]
