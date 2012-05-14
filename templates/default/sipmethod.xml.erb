@@ -6,11 +6,11 @@
   <Container reloadInterval="30" applicationRoot="apps" workRoot="work" osgi="<%=@osgi_enabled%>">
     <% @web_dirs.each do |dir| -%>
     <Application docBase="<%= dir %>"/>
-    <% end-%>
+    <% end -%>
   </Container>
 <% else -%>
   <Container osgi="<%=@osgi_enabled%>"/>
-<%end %>
+<%end -%>
   <MediaControl>
     <MS uri="mrcp://<%="#{@mrcp_ip}:#{@mrcp_port}"%>" useLoopBackAddress="<%=@use_loop_back_address%>" />
   </MediaControl>
@@ -55,5 +55,5 @@
   <%end-%>
     </Node>
   </Cluster>
- <%end-%>
+<%end-%>
 </SIPMethod>
