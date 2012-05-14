@@ -73,7 +73,7 @@
     <category name="as-debug">
       <item name="LongName"> Voxeo Prism Application Server Debug Mode </item>
       <item name="Java"> true </item>
-      <item name="OpenFileMax" platform="linux" type="int"><%= node[:prism][:VxLaunch][:Commands][:as-debug][:OpenFileMax] %></item>
+      <item name="OpenFileMax" platform="linux" type="int"><%= node[:prism][:VxLaunch][:Commands][:as_debug][:OpenFileMax] %></item>
       <category name="java">
         <category name="classpath">
           <item><%=@prism_home%>/lib/jars/*.jar</item>
@@ -107,7 +107,7 @@
       <item name="exe" platform="osx">      /Library/Java/Home/bin/java</item>
       <item name="exe" platform="win">     <%=@prism_home%>\jre\bin\java.exe  </item>
       <item name="description"> Launches Voxeo Prism Application Server Debug Model</item>
-      <item name="Invoke" platform="linux"> -server -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y -Xms<%= node[:prism][:VxLaunch][:Commands][:as-debug][:Xms]%> -Xmx<%= node[:prism][:VxLaunch][:Commands][:as-debug][:Xmx]%> -XX:NewRatio=2 -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:MaxPermSize=<%= node[:prism][:VxLaunch][:Commands][:as-debug][:MaxPermSize] %> -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled org.tanukisoftware.wrapper.WrapperSimpleApp com.micromethod.sipmethod.server.Launcher -start</item>
+      <item name="Invoke" platform="linux"> -server -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y -Xms<%= node[:prism][:VxLaunch][:Commands][:as_debug][:Xms]%> -Xmx<%= node[:prism][:VxLaunch][:Commands][:as_debug][:Xmx]%> -XX:NewRatio=2 -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:MaxPermSize=<%= node[:prism][:VxLaunch][:Commands][:as_debug][:MaxPermSize] %> -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled org.tanukisoftware.wrapper.WrapperSimpleApp com.micromethod.sipmethod.server.Launcher -start</item>
       <item name="AppType" type="int">0</item>
       <item name="ExitCodes"> ,7056,143, </item>
       <item name="StartupTimeout" type="int">600</item>
