@@ -107,7 +107,7 @@ cookbook_file "#{prism_path}/jre/lib/security/cacerts" do
   only_if { FileTest.exist?("#{prism_path}/jre/lib/security/cacerts")}
 end
 
-cookbook_file "#{prism_path}/config/ssl_ca_bundle.crt" do
+cookbook_file "#{prism_path}/conf/ssl_ca_bundle.crt" do
   source "ssl_ca_bundle.crt"
   owner o
   group g
