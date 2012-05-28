@@ -305,12 +305,8 @@
        <% node["prism"]["config"]["ASR"]["vxsremrcp"].each do |engine| %>
          <%= "<category name='#{engine[:lang]}'>" %>
          <%= "<item name='Servers'>#{engine[:hosts].join","}</item>" %>
-         <% if engine[:grammar_format]-%>
-         <%= "<item name='GrammarFormat'>#{engine[:grammar_format]}</item>"
-         <% end -%>
-         <% if engine[:ignore_cseq_errors] -%>
-         <%= "<item name='IgnoreCSeqErrors'>1</item>" %>
-         <% end -%>
+         <%= "<item name='GrammarFormat'>#{engine[:grammar_format]}</item>" if engine[:grammar_format]%>
+         <%= "<item name='IgnoreCSeqErrors'>1</item>" if engine[:ignore_cseq_errors]%>
          <%= "</category>" %>
        <% end %>
      </category>
