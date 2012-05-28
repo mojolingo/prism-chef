@@ -1,5 +1,5 @@
 module Prism
-
+  require 'rubygems' if RUBY_VERSION < "1.9"
   %w(net/http ipaddr nokogiri).each{|lib| require lib}
 
   def self.get_header(uri,header='x-amz-meta-sha256-hash', port=80)
