@@ -125,6 +125,7 @@
   RTP Library configuration
   -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-->
   <category name="Rtp">
+    <item name="CheckPacketSource"><%=node[:prism][:check_packet_source].eql?(true) ? 1 : 0 %></item>
   <% if node[:prism][:sdp_parser_page_size] -%>
   <item name="SDPParserPageSize" type="int"> <%=node[:prism][:sdp_parser_page_size] %> </item>
   <% end -%>

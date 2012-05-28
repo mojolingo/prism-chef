@@ -41,6 +41,7 @@ default[:prism][:VxLaunch][:as][:default_connect_timeout]  =  60000
 default[:prism][:nat_mode]           =  false
 default[:prism][:osgi][:enabled]     =  false
 
+default[:prism][:check_packet_source]   =  true
 if node[:ec2]
   default[:prism][:nat_mode]         =  true
   default[:prism][:local_ipv4]       =  node[:ec2][:local_ipv4]
