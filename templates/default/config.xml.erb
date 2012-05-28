@@ -127,16 +127,16 @@
   <category name="Rtp">
     <item name="CheckPacketSource"><%=node[:prism][:check_packet_source].eql?(true) ? 1 : 0 %></item>
   <% if node[:prism][:sdp_parser_page_size] -%>
-  <item name="SDPParserPageSize" type="int"> <%=node[:prism][:sdp_parser_page_size] %> </item>
+    <item name="SDPParserPageSize" type="int"> <%=node[:prism][:sdp_parser_page_size] %> </item>
   <% end -%>
-  <category name="Gain">
-    <item name="GainLevelIn">0</item>
-    <item name="GainLevelOut">0</item>
-  </category>
+    <category name="Gain">
+      <item name="GainLevelIn">0</item>
+      <item name="GainLevelOut">0</item>
+    </category>
   <% if node[:prism][:initial_rtp_clients_count] -%>
-  <item name="InitialRTPClientsCount"><%= node[:prism][:initial_rtp_clients_count] %></item>
+    <item name="InitialRTPClientsCount"><%= node[:prism][:initial_rtp_clients_count] %></item>
   <% end -%>
-  <category name="SDPCodecs">
+    <category name="SDPCodecs">
     <!--
       Setting to 0 will cause SDP answer to be formed is based on order of the codecs presented in the offer;
       otherwise use local codec priorities.
@@ -145,12 +145,12 @@
     <item name='ForceLocalCodecPriorities'><%= node["prism"]["config"]["Rtp"]["ForceLocalCodecPriorities"] ? 1 : 0 %></item>
     <% node["prism"]["config"]["Rtp"]["SDPCodecs"].each do |codec| %>
     <%= "<category name='#{codec[:name]}'>" %>
-  <% if codec[:priority] -%>
+    <% if codec[:priority] -%>
     <%= "<item name='Priority'>#{codec[:priority]}</item>"%>
-  <% end -%>
+    <% end -%>
     <%= "<item name='Disabled'>#{codec[:disabled] ? 1 : 0}</item>" %>
     <%= "</category>" %>
-      <% end -%>
+    <% end -%>
   </category>
     <item name="BasePort" type="int"><%= node[:prism][:config][:Rtp][:BasePort]%></item>
     <item name="PayloadSize" type="int"><%= node[:prism][:config][:Rtp][:PayloadSize]%></item>

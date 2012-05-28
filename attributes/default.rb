@@ -38,27 +38,25 @@ default[:prism][:VxLaunch][:as][:default_connect_timeout]  =  60000
 
 ## NAT MAPPING STUFF
 # This is used for nat mapping config, if not using please leave set to nil
-default[:prism][:nat_mode]           =  false
-default[:prism][:osgi][:enabled]     =  false
-
+default[:prism][:nat_mode]              =  false
+default[:prism][:osgi][:enabled]        =  false
 default[:prism][:check_packet_source]   =  true
 if node[:ec2]
-  default[:prism][:nat_mode]         =  true
-  default[:prism][:local_ipv4]       =  node[:ec2][:local_ipv4]
-  default[:prism][:public_ipv4]      =  node[:ec2][:public_ipv4]
+  default[:prism][:nat_mode]            =  true
+  default[:prism][:local_ipv4]          =  node[:ec2][:local_ipv4]
+  default[:prism][:public_ipv4]         =  node[:ec2][:public_ipv4]
 elsif node[:openstack]
-  default[:prism][:nat_mode]         =  true
-  default[:prism][:local_ipv4]       =  node.ipaddress
-  default[:prism][:public_ipv4]      =  node[:openstack][:public_ipv4]
+  default[:prism][:nat_mode]            =  true
+  default[:prism][:local_ipv4]          =  node.ipaddress
+  default[:prism][:public_ipv4]         =  node[:openstack][:public_ipv4]
 else
-  default[:prism][:local_ipv4]       =  node.ipaddress
-  default[:prism][:public_ipv4]      =  nil
+  default[:prism][:local_ipv4]          =  node.ipaddress
+  default[:prism][:public_ipv4]         =  nil
 end
 
-default[:prism][:relay_port]         =  5060
-#set_unless[:prism][:netmask]         =  nil
+default[:prism][:relay_port]            =  5060
 
-default[:prism][:netmask]         =  begin
+default[:prism][:netmask]               =  begin
   node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask] #=""
 rescue Exception => e
   "255.255.255.0"
