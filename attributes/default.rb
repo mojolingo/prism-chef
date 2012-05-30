@@ -4,8 +4,8 @@
 default[:prism][:user]    = "voxeo"
 default[:prism][:group]   = "voxeo"
 
-default[:prism][:artifacts][:url]       =  "http://prism-app-server.s3.amazonaws.com/11_5_0_C201203021407_0/prism-11_5_0_C201203021407_0-x64.bin"
-default[:prism][:artifacts][:checksum]  =  '9c0c2c202ef947aa263c5f8cb3a840eaecfc016a105af85c221a4e1d14661b41'
+default[:prism][:artifacts][:url]       =  "https://prism-app-server.s3.amazonaws.com/release/prism-11_5_1_C201204261102_0-x64.bin"
+default[:prism][:artifacts][:checksum]  =  'de15753d2f13af23964d70d620726895dd2d5c31d4f22df6e1ce2bd85a4c192e'
 
 # By default we want to keep from installing tropo and sipoint
 default[:prism][:install_sip_point]     =  false
