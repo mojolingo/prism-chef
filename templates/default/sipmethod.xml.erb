@@ -38,7 +38,7 @@
     <Interceptor class="com.phono.interceptor.PhonoXmppInterceptor" name="phonointerceptor" hostname="<%=node[:phono][:external_dns] ? node[:phono][:external_dns] : node.name.dup.insert(node.name.index('.'), '-ext')%>"/>
   </XMPP>
 <%else-%>
-  <XMPP <%= "distributable=\"true\"" if node[:prism][:sipmethod][:cluster] %>/>
+  <XMPP <%= "distributable=\"true\"" if node[:prism][:cluster] %>/>
 <%end-%>
   <SOAP/>
   <Realm class='com.micromethod.sipmethod.server.security.impl.MemoryRealm' name='MemoryRealm' path='conf/sipmethod-users.xml'/>
@@ -47,12 +47,16 @@
    <Listener address='0.0.0.0' port='12345' transport='tcp'/>
    <Listener address='0.0.0.0' port='1161' transport='udp'/>
   </SNMPAgent>
-<% if node[:prism][:sipmethod][:cluster] -%>
+<% if node[:prism][:cluster] -%>
   <Cluster>
-    <Node name="<%=node[:hostname]%>" local="<%=node[:ipaddress]%>:<%= node[:prism][:sipenv][:rmi_port] %>">
+    <Node name="<%=node[:hostname]%>" local="<%=node[:ipaddress]%>:<%= node[:prism][:rmi_port] %>">
   <% @peers.each do |peer| -%>
-      <Peer remote="<%= (peer.ec2 ? peer.ec2.local_ipv4 : peer.ipaddress) %>:<%= node[:prism][:sipenv][:rmi_port] %>"/>
-  <%end-%>
+     <% unless @peers.select{|c| c.is_a?(Chef::Node)}.empty? -%>
+      <Peer remote="<%= (peer.ec2 ? peer.ec2.local_ipv4 : peer.ipaddress) %>:<%= node[:prism][:rmi_port] %>"/>
+    <% else -%>
+      <Peer remote="<%= peer %>"/>
+    <%end -%>
+  <%end -%>
     </Node>
   </Cluster>
 <%end-%>

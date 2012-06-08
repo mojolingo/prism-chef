@@ -102,8 +102,8 @@ default[:prism][:xmpp_client_port]                              =  5222
 default[:prism][:xmpp_server_port]                              =  5269
 default[:prism][:http_port]                                     =  8080
 default[:prism][:use_loop_back_address]                         =  false
-default[:prism][:sipmethod][:cluster]                           =  false
-
+default[:prism][:cluster]                                       =  false
+default[:prism][:cluster_peers]                                 =  []
 
 default[:prism][:sipmethod][:phono_interceptor][:enabled]       =  false
 default[:prism][:sipmethod][:bosh][:enabled]                    =  false
@@ -117,7 +117,7 @@ default[:prism][:sipmethod_users][:number_of_test_users]        =  5
 #
 # sipenv.properties
 ##############################################
-default[:prism][:sipenv][:rmi_port]                             =  47520
+default[:prism][:rmi_port]                                      =  47520
 
 #
 # autostart.properties
