@@ -59,7 +59,6 @@ template "/etc/init.d/voxeo-as" do
   owner o
   group g
   mode 0770
-
   notifies :enable, "service[voxeo-as]", :immediately
 end
 
@@ -68,7 +67,6 @@ template "/etc/init.d/voxeo-ms" do
   owner o
   group g
   mode 0770
-
   notifies :enable, "service[voxeo-ms]", :immediately
 end
 
@@ -77,7 +75,6 @@ template "/etc/init.d/voxeo-smanager" do
   mode 0770
   owner o
   group g
-
   notifies :enable, "service[voxeo-smanager]", :immediately
 end
 
