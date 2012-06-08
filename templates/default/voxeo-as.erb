@@ -6,7 +6,7 @@
 # chkconfig: 35 55 25
 # description: Voxeo Prism Application Server
 # processname: AS
-# pidfile: <%=node["prism"]["path"]["prism"]%><%=node["prism"]["pid"]%>/voxeo-as.pid
+# pidfile: <%=@prism_path%><%=node["prism"]["pid"]%>/voxeo-as.pid
 
 # Source function library.      This creates the operating environment for the process to be started
 . /etc/init.d/functions
@@ -35,8 +35,8 @@ WaitForPidToExit() {
 
 
 
-PIDFILE=<%=node["prism"]["path"]["prism"]%><%=node["prism"]["pid"]%>/voxeo-as.pid
-LOCKFILE=<%=node["prism"]["path"]["prism"]%><%=node["prism"]["lock"]%>/voxeo-as
+PIDFILE=<%=@prism_path%><%=node["prism"]["pid"]%>/voxeo-as.pid
+LOCKFILE=<%=@prism_path%><%=node["prism"]["lock"]%>/voxeo-as
 CURRENT_USER=`id -u -n`
 
 
@@ -53,13 +53,13 @@ case "$1" in
     fi
 
 
-  export HOME=<%=node["prism"]["path"]["prism"]%>
-  export LD_LIBRARY_PATH=<%=node["prism"]["path"]["prism"]%>/bin:<%=node["prism"]["path"]["prism"]%>/lib:$LD_LIBRARY_PATH$
+  export HOME=<%=@prism_path%>
+  export LD_LIBRARY_PATH=<%=@prism_path%>/bin:<%=@prism_path%>/lib:$LD_LIBRARY_PATH$
 
   if [ "$CURRENT_USER" = <%=node["prism"]["user"]%> ]; then
-    cd <%=node["prism"]["path"]["prism"]%>/bin; <%=node["prism"]["path"]["prism"]%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null
+    cd <%=@prism_path%>/bin; <%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null
   else
-    cd <%=node["prism"]["path"]["prism"]%>/bin; su <%=node["prism"]["user"]%> -s /bin/sh -p -c "<%=node["prism"]["path"]["prism"]%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null"
+    cd <%=@prism_path%>/bin; su <%=node["prism"]["user"]%> -s /bin/sh -p -c "<%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null"
   fi
 
   echo
@@ -82,7 +82,7 @@ case "$1" in
   ;;
 
   status)
-    status=$(cd <%=node["prism"]["path"]["prism"]%>;    <%=node["prism"]["path"]["prism"]%>/bin/prism servicestatus as PIDFILE=<%=node["prism"]["path"]["prism"]%>/var/run/voxeo-as.pid )
+    status=$(cd <%=@prism_path%>;    <%=@prism_path%>/bin/prism servicestatus as PIDFILE=<%=@prism_path%>/var/run/voxeo-as.pid )
     echo $status | grep -q "running"
 
     if [ $? = 1 ];then
