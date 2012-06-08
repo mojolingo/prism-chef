@@ -124,7 +124,7 @@ template "#{path}/conf/sipmethod.xml" do
   :use_loop_back_address     => node[:prism][:use_loop_back_address],
   :udp_network_access_points => node[:prism][:sipmethod][:NetworkAccessPoint][:udp],
   :tcp_network_access_points => node[:prism][:sipmethod][:NetworkAccessPoint][:tcp],
-  :peers                     => search(:node, "role:#{node.roles.include?('rayo_gateway') ? 'rayo_gateway' : 'rayo_node'} AND chef_environment:#{node.chef_environment} NOT name:#{node.name}")
+  :peers                     => node[:prism][:cluster_peers]
   )
   mode 0664
 
