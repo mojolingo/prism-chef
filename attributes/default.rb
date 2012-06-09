@@ -95,8 +95,8 @@ default[:prism][:portAppMappings]={} #"tropo"=>[6060]}
 #
 # sipmethod.xml
 ##############################################
-default[:prism][:sipmethod][:NetworkAccessPoint][:udp]          =  ["6060",'6061']
-default[:prism][:sipmethod][:NetworkAccessPoint][:tcp]          =  ["6060",'6061']
+default[:prism][:sipmethod][:NetworkAccessPoint][:udp]          =  ["5060",'5061']
+default[:prism][:sipmethod][:NetworkAccessPoint][:tcp]          =  ["5060",'5061']
 
 default[:prism][:xmpp_client_port]                              =  5222
 default[:prism][:xmpp_server_port]                              =  5269
