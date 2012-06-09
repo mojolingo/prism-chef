@@ -1,10 +1,9 @@
-artifact_url = node[:prism][:artifacts][:url]
-prism_binary = artifact_url.split("/").last
-prism_tmp = Chef::Config[:file_cache_path]
-prism_path = node[:prism][:path][:prism]
-
-o = node[:prism][:user]
-g = node[:prism][:group]
+artifact_url =  node[:prism][:artifacts][:url]
+prism_binary =  artifact_url.split("/").last
+prism_tmp    =  Chef::Config[:file_cache_path]
+prism_path   =  node[:prism][:path][:prism]
+o            =  node[:prism][:user]
+g            =  node[:prism][:group]
 
 ###############
 
