@@ -211,3 +211,5 @@ default[:prism][:log4j][:file][:max_file_size]                   =  '100MB'
 default[:prism][:log4j][:file][:max_backup_index]                =  30
 
 default[:prism][:license_file]                                   =  "license_25_ports.lic"
+
+default[:prism][:h2_bind_address]                                =  "127.0.0.1"

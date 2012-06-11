@@ -187,6 +187,7 @@
           <% if node[:prism][:VxLaunch][:debug_logging] -%>
           <item name="com.micromethod.sipmethod.server.cluster.logmc">true</item>
           <% end -%>
+          <item name="h2.bindAddress"><%=node[:prism][:h2_bind_address]%></item>
           <item name="com.voxeo.sipmethod.server.launcher.main.block">true</item>
           <item platform="linux" name="java.security.egd">file:/dev/./urandom</item>
           <item platform="osx" name="java.awt.headless">true</item>
