@@ -51,7 +51,7 @@ elsif node[:openstack]
   default[:prism][:public_ipv4]         =  node[:openstack][:public_ipv4]
 else
   default[:prism][:local_ipv4]          =  node.ipaddress
-  default[:prism][:public_ipv4]         =  nil
+  #default[:prism][:public_ipv4]         =  nil
 end
 
 default[:prism][:relay_port]            =  5060
@@ -111,8 +111,8 @@ default[:prism][:sipmethod][:bosh][:enabled]                    =  false
 #
 # sipmethod-users.xml
 ##############################################
-default[:prism][:sipmethod_users][:admin][:username]            =  "admin"
-default[:prism][:sipmethod_users][:admin][:password]            =  "admin"
+default[:prism][:sipmethod_users][:admin_username]              =  "admin"
+default[:prism][:sipmethod_users][:admin_password]              =  "admin"
 default[:prism][:sipmethod_users][:number_of_test_users]        =  5
 #
 # sipenv.properties

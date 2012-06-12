@@ -9,8 +9,8 @@ template "#{path}/conf/sipmethod-users.xml" do
   source "sipmethod-users.xml.erb"
   variables({
   :number_of_test_users =>  node[:prism][:sipmethod_users][:number_of_test_users],
-  :admin_username       =>  node[:prism][:sipmethod_users][:admin][:username],
-  :admin_password       =>  node[:prism][:sipmethod_users][:admin][:password]
+  :admin_username       =>  node[:prism][:sipmethod_users][:admin_username],
+  :admin_password       =>  node[:prism][:sipmethod_users][:admin_password]
   })
   owner o
   group g
@@ -91,7 +91,7 @@ template "#{path}/conf/config.xml" do
   owner o
   group g
   mode 0664
-  variables({:
+  variables({
     :prism_path     =>  node[:prism][:path][:prism],
     :local_ipv4     =>  node[:prism][:local_ipv4],
     :public_ipv4    =>  node[:prism][:public_ipv4],
