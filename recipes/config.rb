@@ -91,10 +91,12 @@ template "#{path}/conf/config.xml" do
   owner o
   group g
   mode 0664
-  variables({
-    :local_ipv4     => node[:prism][:local_ipv4],
-    :public_ipv4    => node[:prism][:public_ipv4],
-    :netmask        => node[:prism][:netmask]
+  variables({:
+    :prism_path     =>  node[:prism][:path][:prism],
+    :local_ipv4     =>  node[:prism][:local_ipv4],
+    :public_ipv4    =>  node[:prism][:public_ipv4],
+    :netmask        =>  node[:prism][:netmask],
+    :tts_engines    =>  node[:prism][:tts_engines],
     :asr_engines    =>  node[:prism][:asr_engines]
   })
 

@@ -32,6 +32,32 @@
                                             }
                                           ]
 
+# Setting TTS Engines
+
+ default[:prism][:tts_engines]     = [
+                                        {
+                                          "name"  =>  "allison",
+                                          "lang"  =>  "en-us",
+                                          "servers" => [
+                                            "rtsp://172.25.163.103:5554/speechsynthesizer"
+                                          ]
+                                        },
+                                        {
+                                          "name"  => "dave",
+                                          "lang"  => "en-us",
+                                          "servers" => [
+                                            "rtsp://172.25.163.103:5554/speechsynthesizer"
+                                          ]
+                                        },
+                                        {
+                                          "name"  => "susan",
+                                          "lang"  => "en-us",
+                                          "servers" => [
+                                            "rtsp://172.25.163.103:5554/speechsynthesizer"
+                                          ]
+                                        }
+                                      ]
+
 = USAGE:
 
 Note:  Should include 2 port unlocked license with any public release

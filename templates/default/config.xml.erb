@@ -218,12 +218,19 @@
      <item name="CachingEnabled" type="int">1</item>
    </category>
    <category name="vxttsmrcp" private="true">
-     <!-- <category name="Voice1">
-       <item name="Name">im</item>
-       <category name="ServerGroup">
-         <item name="Server0"><%=node["prism"]["config"]["TTS"]["im"]["Server"].join(',')%></item>
-       </category>
-     </category> -->
+     <% @tts_engines.each_with_index do |voice,index| -%>
+    <category name="Voice<%=index+1%>">
+      <category name="ServerGroup">
+      <% voice[:servers].each_with_index do |server,index| -%>
+        <item name="Server<%=index%>"><%=voice[:servers][index]%></item>
+      <% end -%>
+      </category>
+      <category name="MRCPParams">
+        <item name="Speech-Language"><%=voice[:lang]%></item>
+        <item name="Voice-name"><%=voice[:name]%></item>
+      </category>
+    </category>
+    <% end-%>
      <item name="IgnoreCSeqErrors">1</item>
      <item name="ConnectTimeout">10000</item>
      <item name="SessionCacheType">none</item>

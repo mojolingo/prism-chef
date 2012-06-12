@@ -167,6 +167,8 @@ default[:prism][:config][:TTS][:VoiceMappings]                   =  [
                                                                       {:voice=>"en-us",:mapping=>"English-Female4"}
                                                                     ]
 
+# Off-box TTS Engines
+default[:prism][:tts_engines]                                    =  []
 
 # OffBox ASR Engines
 default[:prism][:asr_engines]    =  [
