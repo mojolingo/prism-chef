@@ -95,6 +95,7 @@ template "#{path}/conf/config.xml" do
     :local_ipv4     => node[:prism][:local_ipv4],
     :public_ipv4    => node[:prism][:public_ipv4],
     :netmask        => node[:prism][:netmask]
+    :asr_engines    =>  node[:prism][:asr_engines]
   })
 
   notifies :restart, resources(:service => "voxeo-ms")

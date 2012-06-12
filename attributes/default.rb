@@ -153,13 +153,6 @@ default[:prism][:config][:Log][:MaxFileSize]                    =  104857600
 
 default[:prism][:config][:AGS1][:HTTPCtrlPort]                  =  10099
 
-default[:prism][:config][:ASR][:EngineMappings]                 =  [
-                                                                     {:lang=>"dtmf",:engine=>"vxsredtmf"},
-                                                                     {:lang=>"en-us",:engine=>"vxsrepr"}
-                                                                   ]
-
-default[:prism][:config][:ASR][:vxsremrcp]                       =  ""
-
 default[:prism][:config][:TTS][:Cache][:DiskCache]               =  "#{node["prism"]["path"]["prism"]}/Cache/TTS"
 default[:prism][:config][:TTS][:Cache][:DiskCacheSize]           =  "100"
 default[:prism][:config][:TTS][:Cache][:MemoryCacheSize]         =  0
@@ -174,13 +167,18 @@ default[:prism][:config][:TTS][:VoiceMappings]                   =  [
                                                                       {:voice=>"en-us",:mapping=>"English-Female4"}
                                                                     ]
 
+
+# OffBox ASR Engines
+default[:prism][:asr_engines]    =  [
+                                      {:lang  =>  "en-us",:engine  =>  "vxsrepr"}
+                                    ]
+
 case node['platform']
   when "mac_os_x"
     default[:prism][:config][:TTS][:platform]  =  "osx"
   when "redhat","centos", "amazon","ubuntu"
     default[:prism][:config][:TTS][:platform]  =  "linux"
 end
-
 
 #default["prism"]["config"]["MRCPSRV"]["IP"]="0.0.0.0"
 
@@ -190,7 +188,6 @@ default[:prism][:mcrp][:log_level]                               =  8
 
 default[:prism][:config][:IO][:Proxys]                           =  []
 default[:prism][:config][:Log][:SysLogServer]                    =  ['localhost:9977']
-default[:prism][:config][:ASR][:vxsremrcp]                       =  []
 
 default[:prism][:config][:Rtp][:SDPCodecs]                       =  []
 default[:prism][:config][:Rtp][:BasePort]                        =  20000

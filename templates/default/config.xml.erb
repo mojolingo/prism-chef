@@ -282,7 +282,8 @@
  -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-->
  <category name="ASR">
    <item name="EngineMappings">
-     <%= node["prism"]["config"]["ASR"]["EngineMappings"].map{|eng|"#{eng[:lang]}=#{eng[:engine]}"}.join ",\n\t" %>
+    dtmf=vxsredtmf,
+     <%= @asr_engines.map{|eng|"#{eng[:lang]}=#{eng[:engine]}"}.join ",\n\t" %>
    </item>
    <item name="BuiltInGrammars"><%= node["prism"]["path"]["prism"]%>/server/apps/com.voxeo.prism.msctrl/grammars/en-us</item>
    <category name="VXSREPR">
@@ -302,13 +303,19 @@
    <category name="VXSREDTMF"/>
    <category name="vxsremrcp">
      <category name="Groups">
-       <% node["prism"]["config"]["ASR"]["vxsremrcp"].each do |engine| %>
-         <%= "<category name='#{engine[:lang]}'>" %>
-         <%= "<item name='Servers'>#{engine[:hosts].join","}</item>" %>
-         <%= "<item name='GrammarFormat'>#{engine[:grammar_format]}</item>" if engine[:grammar_format]%>
-         <%= "<item name='IgnoreCSeqErrors'>1</item>" if engine[:ignore_cseq_errors]%>
-         <%= "</category>" %>
-       <% end %>
+     <% @asr_engines.each do |asr| -%>
+       <% if asr[:engine].eql?("vxsremrcp") -%>
+         <category name='<%=asr[:lang]%>'>
+           <item name='Servers'><%=asr[:servers].join(",")%></item>
+           <% if asr[:grammar_format] -%>
+           <item name='GrammarFormat'><%=asr[:grammar_format]%></item>
+           <% end -%>
+           <% if asr[:ignore_cseq_errors] -%>
+           <item name='IgnoreCSeqErrors' type='int'>1</item>
+            <% end -%>
+         </category>
+       <% end -%>
+     <% end -%>
      </category>
      <category name="Rtp" reference="/RTP"/>
    </category>
