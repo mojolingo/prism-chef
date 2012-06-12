@@ -212,3 +212,12 @@ default[:prism][:log4j][:file][:max_backup_index]                =  30
 default[:prism][:license_file]                                   =  "license_25_ports.lic"
 
 default[:prism][:h2_bind_address]                                =  "127.0.0.1"
+
+# SNMP Config
+
+default[:prism][:snmp_enabled]                                   =  false
+default[:prism][:snmp_tcp_listen_address]                        =  "0.0.0.0"
+default[:prism][:snmp_udp_listen_address]                        =  "0.0.0.0"
+default[:prism][:snmp_udp_port]                                  =  "12345"
+default[:prism][:snmp_tcp_port]                                  =  "1161"
+default[:prism][:community_name]                                 =  "prism.server"

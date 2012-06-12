@@ -41,10 +41,12 @@
   <SOAP/>
   <Realm class='com.micromethod.sipmethod.server.security.impl.MemoryRealm' name='MemoryRealm' path='conf/sipmethod-users.xml'/>
   <DistributedDirectory/>
-  <SNMPAgent authenticationPassword='' authenticationType='' communityName='dUtch.0v3n' privacyPassword='' privacyType='' userName='' version='v2c'>
-   <Listener address='0.0.0.0' port='12345' transport='tcp'/>
-   <Listener address='0.0.0.0' port='1161' transport='udp'/>
+  <% if @snmp_enabled -%>
+  <SNMPAgent authenticationPassword='' authenticationType='' communityName='<%=@community_name%>' privacyPassword='' privacyType='' userName='' version='v2c'>
+   <Listener address='<%=@snmp_tcp_listen_address%>' port='<%=@snmp_tcp_port%>' transport='tcp'/>
+   <Listener address='<%=@snmp_udp_listen_address%>' port='<%=@snmp_udp_port%>' transport='udp'/>
   </SNMPAgent>
+  <% end -%>
 <% if node[:prism][:cluster] -%>
   <Cluster>
     <Node name="<%=node[:hostname]%>" local="<%=node[:ipaddress]%>:<%= node[:prism][:rmi_port] %>">
