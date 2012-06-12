@@ -80,7 +80,7 @@
   </category>
   <category name="IO">
     <item name="SMTPServer"><%= node["prism"]["config"]["IO"]["SMTPServer"] %></item>
-    <item name="TempFolder"><%= node["prism"]["path"]["prism"]%>/logs/vio</item>
+    <item name="TempFolder"><%= @prism_path %>/logs/vio</item>
     <item name="SMTPPort"><%= node["prism"]["config"]["IO"]["SMTPPort"] %></item>
 
     <% node["prism"]["config"]["IO"]["Proxys"].each_with_index do |server,index| %>
@@ -171,9 +171,9 @@
       <item name="IP"><%=node[:prism][:mcrp][:listen_ip]%></item>
       <item name="Port" type="int"> <%=node[:prism][:mrcp][:port]%> </item>
       <item name="WaveformURI">    http://127.0.0.1:8080/com.voxeo.prism.msctrl/MRCP/Utterances/   </item>
-      <item name="WaveformFolder"> <%= node["prism"]["path"]["prism"]%>/server/apps/com.voxeo.prism.msctrl/MRCP/Utterances</item>
+      <item name="WaveformFolder"> <%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Utterances</item>
       <item name="ForceWaveformRecording" type="int">0</item>
-      <item name="PusherFolder"> <%= node["prism"]["path"]["prism"]%>/server/apps/com.voxeo.prism.msctrl/MRCP/Recordings </item>
+      <item name="PusherFolder"> <%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Recordings </item>
       <item name="InputBufferSizeMs">90</item>
       <item name="OutputBufferSizeMs">90</item>
       <category name="Rtp" reference="/RTP"/>
@@ -209,7 +209,7 @@
      <item name="Voice7">Korean-Male4</item>
      <item name="Voice8">Spanish-Female4</item>
      <item name="Separators"/>
-     <item name="DataLocation"> <%= node["prism"]["path"]["prism"]%>/data/TTS </item>
+     <item name="DataLocation"> <%= @prism_path %>/data/TTS </item>
      <item name="CachingEnabled" type="int">1</item>
      <item name="MaxVoicesInMemory" type="int">0</item>
    </category>
@@ -281,7 +281,7 @@
    <item name="MaxParseLoops" type="int">200</item>
    <item name="PassCalledID" type="int">     1                                                       </item>
    <item name="RecordCallNamingScheme">premise</item>
-   <item name="RecordCallPath"><%= node["prism"]["path"]["prism"]%>/server/apps/com.voxeo.prism.msctrl/MRCP/Recordings</item>
+   <item name="RecordCallPath"><%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Recordings</item>
    <item name="XMLValidation" type="int">     1                                                       </item>
  </category>
  <!--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -292,10 +292,10 @@
     dtmf=vxsredtmf,
      <%= @asr_engines.map{|eng|"#{eng[:lang]}=#{eng[:engine]}"}.join ",\n\t" %>
    </item>
-   <item name="BuiltInGrammars"><%= node["prism"]["path"]["prism"]%>/server/apps/com.voxeo.prism.msctrl/grammars/en-us</item>
+   <item name="BuiltInGrammars"><%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/grammars/en-us</item>
    <category name="VXSREPR">
      <category name="Cache">
-       <item name="DiskCache"> <%= node["prism"]["path"]["prism"]%>/Cache/Grammars </item>
+       <item name="DiskCache"> <%= @prism_path %>/Cache/Grammars </item>
        <item name="DiskCacheSize">50MB</item>
        <item name="MemoryCacheSize">10MB</item>
        <item name="MaxItems" type="int">1024</item>
