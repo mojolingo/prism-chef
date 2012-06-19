@@ -198,6 +198,8 @@ default[:prism][:config][:Rtp][:SocketBuffer]                    =  10000
 default[:prism][:config][:Rtp][:DTMFDuration]                    =  120
 default[:prism][:config][:Rtp][:DTMFPause]                       =  240
 
+default[:prism][:include_tropo_logger] = !node.run_list.recipe_names.select{|x| x=~/tropo/}.empty?
+
 default[:prism][:log4j][:syslog][:server]                        =  "127.0.0.1:9977"
 default[:prism][:log4j][:root_logger]                            =  %w(DEBUG FILE SYSLOG)
 default[:prism][:log4j][:logger][:voxeo]                         =  %w(DEBUG FILE_APP SYSLOG)

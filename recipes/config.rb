@@ -59,8 +59,6 @@ template "#{path}/conf/log4j.properties" do
 
   })
   notifies :restart, resources(:service => "voxeo-as")
-  notifies :restart, resources(:service => "voxeo-ms")
-
   only_if { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 end
 
