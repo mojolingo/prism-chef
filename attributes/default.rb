@@ -205,9 +205,10 @@ default[:prism][:log4j][:logger][:voxeo]                         =  %w(DEBUG FIL
 default[:prism][:log4j][:syslog][:threshold]                     =  "DEBUG"
 default[:prism][:log4j][:syslog][:tcp]                           =  false
 
-default[:prism][:log4j][:file][:append]                          =  true
-default[:prism][:log4j][:file][:max_file_size]                   =  '100MB'
-default[:prism][:log4j][:file][:max_backup_index]                =  30
+default[:prism][:log4j][:append]                                 =  true
+default[:prism][:log4j][:max_file_size]                          =  '100MB'
+default[:prism][:log4j][:max_backup_index]                       =  30
+default[:prism][:log4j][:max_syslog_msg_size]                    =  1300
 
 default[:prism][:license_file]                                   =  "license_25_ports.lic"
 
