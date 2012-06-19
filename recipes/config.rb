@@ -19,7 +19,6 @@ template "#{path}/conf/sipmethod-users.xml" do
   only_if  { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 
   notifies :restart, resources(:service => "voxeo-as")
-  notifies :restart, resources(:service => "voxeo-ms")
 end
 
 template "#{path}/conf/portappmapping.properties" do
