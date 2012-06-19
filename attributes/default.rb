@@ -129,29 +129,29 @@ default[:prism][:autostart][:ms]  =  true
 # CONFIG.XML SECTION
 ##############################################
 
-default[:prism][:config][:DNS]                                  =  ["127.0.0.1:9962"]
-default[:prism][:config][:IO][:SMTPServer]                      =  ""
-default[:prism][:config][:IO][:SMTPPort]                        =  "25"
-default[:prism][:config][:IO][:Proxys]                          =  ""
-default[:prism][:config][:IO][:AllowLocalFileAccess]            =  1
+default[:prism][:config][:DNS]                                   =  ["127.0.0.1:9962"]
+default[:prism][:config][:IO][:SMTPServer]                       =  ""
+default[:prism][:config][:IO][:SMTPPort]                         =  "25"
+default[:prism][:config][:IO][:Proxys]                           =  ""
+default[:prism][:config][:IO][:AllowLocalFileAccess]             =  1
 
-default[:prism][:config][:Rtp][:BasePort]                       =  20000
-default[:prism][:config][:Rtp][:PayloadSize]                    =  160
-default[:prism][:config][:Rtp][:SocketBuffer]                   =  10000
-default[:prism][:config][:Rtp][:DTMFDuration]                   =  120
-default[:prism][:config][:Rtp][:DTMFPause]                      =  240
+default[:prism][:config][:Rtp][:BasePort]                        =  20000
+default[:prism][:config][:Rtp][:PayloadSize]                     =  160
+default[:prism][:config][:Rtp][:SocketBuffer]                    =  10000
+default[:prism][:config][:Rtp][:DTMFDuration]                    =  120
+default[:prism][:config][:Rtp][:DTMFPause]                       =  240
 
-default[:prism][:sdp_parser_page_size]                          =  nil
-default[:prism][:initial_rtp_clients_count]                     =  nil
+default[:prism][:sdp_parser_page_size]                           =  nil
+default[:prism][:initial_rtp_clients_count]                      =  nil
 
-default[:prism][:config][:Media][:ConferenceManagerURL]         =  "http://127.0.0.1:8080/com.voxeo.directory/"
+default[:prism][:config][:Media][:ConferenceManagerURL]          =  "http://127.0.0.1:8080/com.voxeo.directory/"
 
-default[:prism][:config][:Log][:FileBase]                       =  "./logs/vcs/log"
-default[:prism][:config][:Log][:SysLogServer]                   =  ""
-default[:prism][:config][:Log][:MaxNumOfFiles]                  =  100
-default[:prism][:config][:Log][:MaxFileSize]                    =  104857600
+default[:prism][:config][:Log][:FileBase]                        =  "./logs/vcs/log"
+default[:prism][:config][:Log][:SysLogServer]                    =  ""
+default[:prism][:config][:Log][:MaxNumOfFiles]                   =  100
+default[:prism][:config][:Log][:MaxFileSize]                     =  104857600
 
-default[:prism][:config][:AGS1][:HTTPCtrlPort]                  =  10099
+default[:prism][:config][:AGS1][:HTTPCtrlPort]                   =  10099
 
 default[:prism][:config][:TTS][:Cache][:DiskCache]               =  "#{node["prism"]["path"]["prism"]}/Cache/TTS"
 default[:prism][:config][:TTS][:Cache][:DiskCacheSize]           =  "100"

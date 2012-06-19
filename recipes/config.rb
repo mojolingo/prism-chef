@@ -38,10 +38,7 @@ template "#{path}/conf/sipenv.properties" do
   owner o
   group g
   mode 0664
-
-
   notifies :restart, resources(:service => "voxeo-as")
-
   only_if { Prism.mrcp_sessions(node[:ipaddress]) == 0 }
 end
 

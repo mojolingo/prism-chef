@@ -68,8 +68,15 @@ template "/etc/init.d/voxeo-ms" do
   owner o
   group g
   mode 0770
+  Chef::Log.debug ":prism_path  =>  #{node[:prism][:path][:prism]}"
+  Chef::Log.debug ":pid_file    =>  #{node[:prism][:pid]}"
+  Chef::Log.debug ":lock_file   =>  #{node[:prism][:lock]}"
+  Chef::Log.debug ":prism_user  =>  #{node[:prism][:user]}"
   variables({
-    :prism_path => node[:prism][:path][:prism]
+    :prism_path  =>  node[:prism][:path][:prism],
+    :pid_file    =>  node[:prism][:pid],
+    :lock_file   =>  node[:prism][:lock],
+    :prism_user  =>  node[:prism][:user]
   })
   notifies :enable, "service[voxeo-ms]", :immediately
 end
