@@ -1,11 +1,12 @@
-= DESCRIPTION:
+# DESCRIPTION:
+  Configures Voxeo's Prism voice application server
 
-= REQUIREMENTS:
+# REQUIREMENTS:
 
-= ATTRIBUTES:
+# ATTRIBUTES:
 
 
-# Setting ASR Engines
+### Setting ASR Engines
 
     default[:prism][:asr_engines]    =   [
                                             {
@@ -32,9 +33,9 @@
                                             }
                                           ]
 
-# Setting TTS Engines
+##### Setting TTS Engines
 
- default[:prism][:tts_engines]     = [
+    default[:prism][:tts_engines]     = [
                                         {
                                           "name"  =>  "allison",
                                           "lang"  =>  "en-us",
@@ -58,7 +59,24 @@
                                         }
                                       ]
 
-= USAGE:
+
+##### Sip Registration
+
+Prism supports sip regisration, and this is of course configurable via Chef.  The follow attributes are related to setting a SIP gateway and/or SIP registration
+
+    node[:prism][:gateway_address],
+    node[:prism][:gateway_transport],
+    node[:prism][:registration_address],
+    node[:prism][:registration_enabled],
+    node[:prism][:registration_user],
+    node[:prism][:registration_address],
+    node[:prism][:registration_authuser],
+    node[:prism][:registration_password],
+    node[:prism][:registration_domain],
+    node[:prism][:registration_contact],
+    node[:prism][:registration_expiration],
+
+# USAGE:
 
 Note:  Should include 2 port unlocked license with any public release
 

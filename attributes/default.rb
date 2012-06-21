@@ -198,7 +198,7 @@ default[:prism][:config][:Rtp][:SocketBuffer]                    =  10000
 default[:prism][:config][:Rtp][:DTMFDuration]                    =  120
 default[:prism][:config][:Rtp][:DTMFPause]                       =  240
 
-default[:prism][:include_tropo_logger] = !node.run_list.recipe_names.select{|x| x=~/tropo/}.empty?
+default[:prism][:include_tropo_logger]                           = !node.run_list.recipe_names.select{|x| x=~/tropo/}.empty?
 
 default[:prism][:log4j][:syslog][:server]                        =  "127.0.0.1:9977"
 default[:prism][:log4j][:root_logger]                            =  %w(DEBUG FILE SYSLOG)
@@ -217,7 +217,6 @@ default[:prism][:license_file]                                   =  "license_25_
 default[:prism][:h2_bind_address]                                =  "127.0.0.1"
 
 # SNMP Config
-
 default[:prism][:snmp_enabled]                                   =  false
 default[:prism][:snmp_tcp_listen_address]                        =  "0.0.0.0"
 default[:prism][:snmp_udp_listen_address]                        =  "0.0.0.0"
