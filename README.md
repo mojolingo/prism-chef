@@ -99,3 +99,19 @@ Note:  Should include 2 port unlocked license with any public release
     ./tsm     # Tail SipMethod
     ./tw      # Tail wrapper.log
 
+
+# Change Log:
+
+[1.2.1]
+
+    * Added change log
+    * SNMP port and service status is now configurable
+
+[1.2.2]
+
+    * Changed sipmethod console username and password atttribute name
+
+[1.3.0]
+
+    * New version numbers
+    * Added sip registration to sipmethod.xml

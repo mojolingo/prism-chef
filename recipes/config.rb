@@ -119,26 +119,37 @@ template "#{path}/conf/sipmethod.xml" do
   owner o
   group g
   variables(
-  :osgi_enabled              => node[:prism][:osgi][:enabled],
-  :mrcp_ip                   => node[:prism][:local_ipv4], #node["ec2"] ? node["ec2"]["public_ipv4"] : node["prism"]["config"]["MRCPSRV"]["IP"] , # Ticket: 1615349
-  :mrcp_port                 => node[:prism][:mrcp][:port],
-  :address                   => node[:prism][:local_ipv4],
-  :web_dirs                  => [node[:prism][:cust_home]],
-  :relay_address             => node[:prism][:public_ipv4],
-  :relay_port                => node[:prism][:relay_port],
-  :xmpp_client_port          => node[:prism][:xmpp_client_port],
-  :xmpp_server_port          => node[:prism][:xmpp_server_port],
-  :snmp_enabled              => node[:prism][:snmp_enabled],
-  :snmp_tcp_listen_address   => node[:prism][:snmp_tcp_listen_address],
-  :snmp_udp_listen_address   => node[:prism][:snmp_udp_listen_address],
-  :snmp_udp_port             => node[:prism][:snmp_udp_port],
-  :snmp_tcp_port             => node[:prism][:snmp_tcp_port],
-  :snmp_community_name       => node[:prism][:community_name],
-  :http_port                 => node[:prism][:http_port],
-  :use_loop_back_address     => node[:prism][:use_loop_back_address],
-  :udp_network_access_points => node[:prism][:sipmethod][:NetworkAccessPoint][:udp],
-  :tcp_network_access_points => node[:prism][:sipmethod][:NetworkAccessPoint][:tcp],
-  :peers                     => node[:prism][:cluster_peers]
+  :osgi_enabled              =>  node[:prism][:osgi][:enabled],
+  :mrcp_ip                   =>  node[:prism][:local_ipv4], #node["ec2"] ? node["ec2"]["public_ipv4"] : node["prism"]["config"]["MRCPSRV"]["IP"] , # Ticket: 1615349
+  :mrcp_port                 =>  node[:prism][:mrcp][:port],
+  :address                   =>  node[:prism][:local_ipv4],
+  :web_dirs                  =>  [node[:prism][:cust_home]],
+  :gateway_address           =>  node[:prism][:gateway_address],
+  :gateway_transport         =>  node[:prism][:gateway_transport],
+  :registration_address      =>  node[:prism][:registration_address],
+  :registration_enabled      =>  node[:prism][:registration_enabled],
+  :registration_user         =>  node[:prism][:registration_user],
+  :registration_address      =>  node[:prism][:registration_address],
+  :registration_authuser     =>  node[:prism][:registration_authuser],
+  :registration_password     =>  node[:prism][:registration_password],
+  :registration_domain       =>  node[:prism][:registration_domain],
+  :registration_contact      =>  node[:prism][:registration_contact],
+  :registration_expiration   =>  node[:prism][:registration_expiration],
+  :relay_address             =>  node[:prism][:public_ipv4],
+  :relay_port                =>  node[:prism][:relay_port],
+  :xmpp_client_port          =>  node[:prism][:xmpp_client_port],
+  :xmpp_server_port          =>  node[:prism][:xmpp_server_port],
+  :snmp_enabled              =>  node[:prism][:snmp_enabled],
+  :snmp_tcp_listen_address   =>  node[:prism][:snmp_tcp_listen_address],
+  :snmp_udp_listen_address   =>  node[:prism][:snmp_udp_listen_address],
+  :snmp_udp_port             =>  node[:prism][:snmp_udp_port],
+  :snmp_tcp_port             =>  node[:prism][:snmp_tcp_port],
+  :snmp_community_name       =>  node[:prism][:community_name],
+  :http_port                 =>  node[:prism][:http_port],
+  :use_loop_back_address     =>  node[:prism][:use_loop_back_address],
+  :udp_network_access_points =>  node[:prism][:sipmethod][:NetworkAccessPoint][:udp],
+  :tcp_network_access_points =>  node[:prism][:sipmethod][:NetworkAccessPoint][:tcp],
+  :peers                     =>  node[:prism][:cluster_peers]
   )
   mode 0664
 

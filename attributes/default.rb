@@ -223,3 +223,16 @@ default[:prism][:snmp_udp_listen_address]                        =  "0.0.0.0"
 default[:prism][:snmp_udp_port]                                  =  "12345"
 default[:prism][:snmp_tcp_port]                                  =  "1161"
 default[:prism][:community_name]                                 =  "prism.server"
+
+# Sip Registration
+default[:prism][:registration_enabled]                           =  false
+default[:prism][:registration_address]                           =  nil
+default[:prism][:registration_user]                              =  nil
+default[:prism][:registration_authuser]                          =  nil
+default[:prism][:registration_password]                          =  nil
+default[:prism][:registration_domain]                            =  nil
+default[:prism][:registration_contact]                           =  nil
+default[:prism][:gateway_address]                                =  nil
+default[:prism][:gateway_transport]                              =  "udp"
+default[:prism][:registration_expiration]                        =  3600
+
