@@ -27,8 +27,8 @@
   <NetworkAccessPoint coreThreadPoolSize='50' port='<%=@http_port%>' transport='http'/>
   <SIP rport='true'>
     <Interceptor class='com.micromethod.sipmethod.server.sip.interceptor.GenericAuthenticator' name='DefaultSipAuthenticator' path='conf/sip.authenticators.properties'/>
-    <% if @registration_enabled -%>
-    <Gateway address="<%=@gateway_host%>" transport="<%=@gateway_transport%>">
+    <% if @gateway_address -%>
+    <Gateway address="<%=@gateway_address%>" transport="<%=@gateway_transport%>">
       <% if @registration_address -%>
       <Registration address="<%=@registration_address%>" user="<%=@registration_user%>" <%= "authuser=\"#{@registration_authuser}\"" if @registration_authuser %> password="<%=@registration_password%>" domain="<%=@registration_domain%>" contact="@registration_contact%>" expiration="<%=@registration_expiration%>"/>
       <% end -%>

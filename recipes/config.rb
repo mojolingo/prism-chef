@@ -127,7 +127,6 @@ template "#{path}/conf/sipmethod.xml" do
   :gateway_address           =>  node[:prism][:gateway_address],
   :gateway_transport         =>  node[:prism][:gateway_transport],
   :registration_address      =>  node[:prism][:registration_address],
-  :registration_enabled      =>  node[:prism][:registration_enabled],
   :registration_user         =>  node[:prism][:registration_user],
   :registration_address      =>  node[:prism][:registration_address],
   :registration_authuser     =>  node[:prism][:registration_authuser],

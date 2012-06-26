@@ -64,17 +64,16 @@
 
 Prism supports sip regisration, and this is of course configurable via Chef.  The follow attributes are related to setting a SIP gateway and/or SIP registration
 
-    node[:prism][:gateway_address],
-    node[:prism][:gateway_transport],
-    node[:prism][:registration_address],
-    node[:prism][:registration_enabled],
-    node[:prism][:registration_user],
-    node[:prism][:registration_address],
-    node[:prism][:registration_authuser],
-    node[:prism][:registration_password],
-    node[:prism][:registration_domain],
-    node[:prism][:registration_contact],
-    node[:prism][:registration_expiration],
+    node[:prism][:gateway_address]
+    node[:prism][:gateway_transport]
+    node[:prism][:registration_address]
+    node[:prism][:registration_user]
+    node[:prism][:registration_address]
+    node[:prism][:registration_authuser]
+    node[:prism][:registration_password]
+    node[:prism][:registration_domain]
+    node[:prism][:registration_contact]
+    node[:prism][:registration_expiration]
 
 # USAGE:
 
@@ -115,3 +114,7 @@ Note:  Should include 2 port unlocked license with any public release
 
     * New version numbers
     * Added sip registration to sipmethod.xml
+
+[1.4.0]
+    * No longer need to explicity enable "registration", instead we assume its enabled if you provided a gateway host attribute.  This is defaulted to false
+    * Max log size is now nil, and not included in log4j.properties unless set

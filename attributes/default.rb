@@ -225,7 +225,6 @@ default[:prism][:snmp_tcp_port]                                  =  "1161"
 default[:prism][:community_name]                                 =  "prism.server"
 
 # Sip Registration
-default[:prism][:registration_enabled]                           =  false
 default[:prism][:registration_address]                           =  nil
 default[:prism][:registration_user]                              =  nil
 default[:prism][:registration_authuser]                          =  nil
