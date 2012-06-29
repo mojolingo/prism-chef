@@ -118,3 +118,6 @@ Note:  Should include 2 port unlocked license with any public release
 [1.4.0]
     * No longer need to explicity enable "registration", instead we assume its enabled if you provided a gateway host attribute.  This is defaulted to false
     * Max log size is now nil, and not included in log4j.properties unless set
+
+[1.5.0]
+   * Bosh URL is now configurable

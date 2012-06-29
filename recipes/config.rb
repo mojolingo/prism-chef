@@ -120,7 +120,8 @@ template "#{path}/conf/sipmethod.xml" do
   group g
   variables(
   :osgi_enabled              =>  node[:prism][:osgi][:enabled],
-  :mrcp_ip                   =>  node[:prism][:local_ipv4], #node["ec2"] ? node["ec2"]["public_ipv4"] : node["prism"]["config"]["MRCPSRV"]["IP"] , # Ticket: 1615349
+  :mrcp_ip                   =>  node[:prism][:local_ipv4],   #node["ec2"] ? node["ec2"]["public_ipv4"] : node["prism"]["config"]["MRCPSRV"]["IP"] , # Ticket: 1615349
+  :bosh_url                  =>  node[:prism][:sipmethod][:bosh][:url],
   :mrcp_port                 =>  node[:prism][:mrcp][:port],
   :address                   =>  node[:prism][:local_ipv4],
   :web_dirs                  =>  [node[:prism][:cust_home]],

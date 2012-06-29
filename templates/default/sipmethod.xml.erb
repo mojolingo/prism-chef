@@ -14,7 +14,7 @@
     <MS uri="mrcp://<%="#{@mrcp_ip}:#{@mrcp_port}"%>" useLoopBackAddress="<%=@use_loop_back_address%>" />
   </MediaControl>
 <% if node[:prism][:sipmethod][:bosh][:enabled] -%>
-  <BOSH/>
+  <BOSH boshurl="<%=@bosh_url%>"/>
 <% end -%>
 <% @udp_network_access_points.each do |port| -%>
   <NetworkAccessPoint port='<%=port %>' transport='udp' <%= (Prism.nat_mapping :address=> @address, :port=>port, :relay_port=>@relay_port, :relay_address=>@relay_address) if node[:prism][:nat_mode] %>/>
