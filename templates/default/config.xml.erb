@@ -167,18 +167,19 @@
   MRCP server category. Always top-level.
  -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-->
  <category name="MRCPSRV">
-      <item name="LogLevel"><%=node[:prism][:mcrp][:log_level]%></item>
-      <item name="IP"><%=node[:prism][:mcrp][:listen_ip]%></item>
-      <item name="Port" type="int"> <%=node[:prism][:mrcp][:port]%> </item>
-      <item name="WaveformURI">    http://127.0.0.1:8080/com.voxeo.prism.msctrl/MRCP/Utterances/   </item>
-      <item name="WaveformFolder"> <%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Utterances</item>
-      <item name="ForceWaveformRecording" type="int">0</item>
-      <item name="PusherFolder"> <%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Recordings </item>
-      <item name="InputBufferSizeMs">90</item>
-      <item name="OutputBufferSizeMs">90</item>
-      <category name="Rtp" reference="/RTP"/>
-      <category name="TTS" reference="/TTS"/>
-    </category>
+  <item name="ForceCallRecordDebug"><%= node[:prism][:mcrp][:force_call_recording_debug] ? 1 : 0 %></item>
+  <item name="LogLevel"><%=node[:prism][:mcrp][:log_level]%></item>
+  <item name="IP"><%=node[:prism][:mcrp][:listen_ip]%></item>
+  <item name="Port" type="int"> <%=node[:prism][:mrcp][:port]%> </item>
+  <item name="WaveformURI">    http://127.0.0.1:8080/com.voxeo.prism.msctrl/MRCP/Utterances/   </item>
+  <item name="WaveformFolder"> <%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Utterances</item>
+  <item name="ForceWaveformRecording" type="int">0</item>
+  <item name="PusherFolder"> <%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Recordings </item>
+  <item name="InputBufferSizeMs">90</item>
+  <item name="OutputBufferSizeMs">90</item>
+  <category name="Rtp" reference="/RTP"/>
+  <category name="TTS" reference="/TTS"/>
+ </category>
  <!--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
   TTS manager/engines config.
  -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-->

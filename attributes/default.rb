@@ -185,6 +185,7 @@ end
 #default["prism"]["config"]["MRCPSRV"]["IP"]="0.0.0.0"
 
 default[:prism][:mrcp][:port]                                    =  10074
+default[:prism][:mcrp][:force_call_recording_debug]              =  false
 default[:prism][:mcrp][:listen_ip]                               =  "0.0.0.0"
 default[:prism][:mcrp][:log_level]                               =  8
 

@@ -121,3 +121,4 @@ Note:  Should include 2 port unlocked license with any public release
 
 [1.5.0]
    * Bosh URL is now configurable
+   * Force Call Recording is now configurable via chef
