@@ -126,3 +126,5 @@ Note:  Should include 2 port unlocked license with any public release
 [1.6.0]
    * Refactor of attribute names ( start )
 
+[1.7.0]
+   * Refactor of logging config to support muitple log4j syslog appenders

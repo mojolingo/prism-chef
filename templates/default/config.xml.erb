@@ -105,21 +105,21 @@
     <item name="MeteringLogFile">  ./logs/vcs/metering_cannot_send.log</item>
     <item name="MeteringLoggerAddress0"/>
     <item name="EncryptionKey"/>
-    <item name="FileBase"><%= node["prism"]["config"]["Log"]["FileBase"] %></item>
+    <item name="FileBase"><%= node[:prism][:vcs][:file_base] %></item>
     <item name="MaskDebug" type="int">2</item>
     <item name="MaskHighLevel" type="int">2</item>
     <item name="MaskLowLevel" type="int">2</item>
     <item name="MaskSession" type="int">2</item>
     <item name="MaskUser" type="int">6</item>
-    <item name="MaxFileSize" type="int"><%= node["prism"]["config"]["Log"]["MaxFileSize"] %></item>
-    <item name="MaxNumOfFiles" type="int"><%= node["prism"]["config"]["Log"]["MaxNumOfFiles"] %></item>
+    <item name="MaxFileSize" type="int"><%= node[:prism][:vcs][:max_file_size] %></item>
+    <item name="MaxNumOfFiles" type="int"><%= node[:prism][:vcs][:max_number_of_files] %></item>
     <item name="RetryDelay" type="int">5</item>
     <item name="SysLogEnabled" type="int">1</item>
     <item name="SysLogFilter" type="int">-1</item>
     <item name="SysLogBroadCast" type="int">1</item>
-    <% node["prism"]["config"]["Log"]["SysLogServer"].each_with_index do |host,index| %>
+    <% node[:prism][:vcs][:syslog_servers].each_with_index do |host,index| -%>
       <%= "<item name='SysLogServer#{index}'>#{host}</item>" %>
-    <% end %>
+    <% end -%>
   </category>
   <!--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
   RTP Library configuration

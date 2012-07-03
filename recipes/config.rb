@@ -51,11 +51,11 @@ template "#{path}/conf/log4j.properties" do
     :max_syslog_msg_size   =>  node[:prism][:log4j][:max_syslog_msg_size],
     :use_tcp               =>  node[:prism][:log4j][:syslog][:tcp],
     :logging_threshold     =>  node[:prism][:log4j][:syslog][:threshold],
-    :syslog_server         =>  node[:prism][:log4j][:syslog][:server],
+    :syslog_servers        =>  node[:prism][:log4j][:syslog_servers],
     :append_logs           =>  node[:prism][:log4j][:append],
     :max_file_size         =>  node[:prism][:log4j][:max_file_size],
     :max_backup_index      =>  node[:prism][:log4j][:max_backup_index],
-    :root_logger           =>  node[:prism][:log4j][:root_logger]
+    :root_logger           =>  node[:prism][:log4j][:root_logger] + node[:prism][:log4j][:syslog_servers].count.times.map{|i| "SYSLOG#{i}"}
 
   })
   notifies :restart, resources(:service => "voxeo-as")

@@ -186,6 +186,12 @@ default[:prism][:mcrp][:log_level]                               =  8
 
 default[:prism][:vcs][:proxies]                                  =  []
 
+default[:prism][:vcs][:syslog_servers]                           =  ['localhost:9977']
+default[:prism][:vcs][:file_base]                                =  "./logs/vcs/log"
+default[:prism][:vcs][:max_number_of_files]                      =  100
+default[:prism][:vcs][:max_file_size]                            =  104857600
+
+
 default[:prism][:config][:Rtp][:SDPCodecs]                       =  []
 default[:prism][:config][:Rtp][:BasePort]                        =  20000
 default[:prism][:config][:Rtp][:PayloadSize]                     =  160
@@ -193,10 +199,12 @@ default[:prism][:config][:Rtp][:SocketBuffer]                    =  10000
 default[:prism][:config][:Rtp][:DTMFDuration]                    =  120
 default[:prism][:config][:Rtp][:DTMFPause]                       =  240
 
+
+# Prism AS Log4j config
 default[:prism][:include_tropo_logger]                           = !node.run_list.recipe_names.select{|x| x=~/tropo/}.empty?
 
-default[:prism][:log4j][:syslog][:server]                        =  "127.0.0.1:9977"
-default[:prism][:log4j][:root_logger]                            =  %w(DEBUG FILE SYSLOG)
+default[:prism][:log4j][:syslog_servers]                        =  ["127.0.0.1:9977"]
+default[:prism][:log4j][:root_logger]                            =  %w(DEBUG FILE)
 default[:prism][:log4j][:logger][:voxeo]                         =  %w(DEBUG FILE_APP SYSLOG)
 
 default[:prism][:log4j][:syslog][:threshold]                     =  "DEBUG"
