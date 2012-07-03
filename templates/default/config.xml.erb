@@ -74,26 +74,26 @@
     </category>
   </category>
   <category name="DNS">
-    <% node["prism"]["config"]["DNS"].each_with_index do |server,index| %>
+    <% node[:prism][:vcs][:dns_servers].each_with_index do |server,index| -%>
       <%= "<item name='Server#{index+1}'>#{server}</item>" %>
-    <% end %>
+    <% end -%>
   </category>
   <category name="IO">
-    <item name="SMTPServer"><%= node["prism"]["config"]["IO"]["SMTPServer"] %></item>
+    <item name="SMTPServer"><%= node[:prism][:vcs][:smtp_server] %></item>
     <item name="TempFolder"><%= @prism_path %>/logs/vio</item>
-    <item name="SMTPPort"><%= node["prism"]["config"]["IO"]["SMTPPort"] %></item>
+    <item name="SMTPPort"><%= node[:prism][:vcs][:smtp_port] %></item>
 
-    <% node["prism"]["config"]["IO"]["Proxys"].each_with_index do |server,index| %>
+    <% node[:prism][:vcs][:proxies].each_with_index do |server,index| %>
       <%= "<item name='Proxy1#{index+1}'>#{server}</item>" %>
     <% end %>
 
-    <item name="AllowLocalFileAccess"><%=node["prism"]["config"]["IO"]["AllowLocalFileAccess"]%></item>
+    <item name="AllowLocalFileAccess"><%=node[:prism][:vcs][:allow_local_file_access]%></item>
   </category>
   <category name="NAT">
     <item name="NATMapping0"><%= "#{@local_ipv4}=#{@public_ipv4}/#{@netmask}</item>" %>
   </category>
   <category name="Media">
-    <item name="ConferenceManagerURL"><%= node["prism"]["config"]["Media"]["ConferenceManagerURL"] %></item>
+    <item name="ConferenceManagerURL"><%= node[:prism][:vcs][:conference_manager_url] %></item>
   </category>
   <!--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
   Logging category.
@@ -125,16 +125,16 @@
   RTP Library configuration
   -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-->
   <category name="Rtp">
-    <item name="CheckPacketSource"><%=node[:prism][:check_packet_source].eql?(true) ? 1 : 0 %></item>
-  <% if node[:prism][:sdp_parser_page_size] -%>
-    <item name="SDPParserPageSize" type="int"> <%=node[:prism][:sdp_parser_page_size] %> </item>
+    <item name="CheckPacketSource"><%=node[:prism][:vcs][:check_packet_source].eql?(true) ? 1 : 0 %></item>
+  <% if node[:prism][:vcs][:sdp_parser_page_size] -%>
+    <item name="SDPParserPageSize" type="int"> <%=node[:prism][:vcs][:sdp_parser_page_size] %> </item>
   <% end -%>
     <category name="Gain">
       <item name="GainLevelIn">0</item>
       <item name="GainLevelOut">0</item>
     </category>
-  <% if node[:prism][:initial_rtp_clients_count] -%>
-    <item name="InitialRTPClientsCount"><%= node[:prism][:initial_rtp_clients_count] %></item>
+  <% if node[:prism][:vcs][:initial_rtp_clients_count] -%>
+    <item name="InitialRTPClientsCount"><%= node[:prism][:vcs][:initial_rtp_clients_count] %></item>
   <% end -%>
     <category name="SDPCodecs">
     <!--

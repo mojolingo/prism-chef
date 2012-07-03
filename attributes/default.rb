@@ -38,25 +38,25 @@ default[:prism][:VxLaunch][:as][:default_connect_timeout]  =  60000
 
 ## NAT MAPPING STUFF
 # This is used for nat mapping config, if not using please leave set to nil
-default[:prism][:nat_mode]              =  false
-default[:prism][:osgi][:enabled]        =  false
-default[:prism][:check_packet_source]   =  true
+default[:prism][:nat_mode]                                     =  false
+default[:prism][:osgi][:enabled]                               =  false
+default[:prism][:vcs][:check_packet_source]                    =  true
 if node[:ec2]
-  default[:prism][:nat_mode]            =  true
-  default[:prism][:local_ipv4]          =  node[:ec2][:local_ipv4]
-  default[:prism][:public_ipv4]         =  node[:ec2][:public_ipv4]
+  default[:prism][:nat_mode]                                   =  true
+  default[:prism][:local_ipv4]                                 =  node[:ec2][:local_ipv4]
+  default[:prism][:public_ipv4]                                =  node[:ec2][:public_ipv4]
 elsif node[:openstack]
-  default[:prism][:nat_mode]            =  true
-  default[:prism][:local_ipv4]          =  node.ipaddress
-  default[:prism][:public_ipv4]         =  node[:openstack][:public_ipv4]
+  default[:prism][:nat_mode]                                   =  true
+  default[:prism][:local_ipv4]                                 =  node.ipaddress
+  default[:prism][:public_ipv4]                                =  node[:openstack][:public_ipv4]
 else
-  default[:prism][:local_ipv4]          =  node.ipaddress
-  #default[:prism][:public_ipv4]         =  nil
+  default[:prism][:local_ipv4]                                 =  node.ipaddress
+  #default[:prism][:public_ipv4]                               =  nil
 end
 
-default[:prism][:relay_port]            =  5060
+default[:prism][:relay_port]                                   =  5060
 
-default[:prism][:netmask]               =  begin
+default[:prism][:netmask]                                      =  begin
   node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask] #=""
 rescue Exception => e
   "255.255.255.0"
@@ -90,7 +90,7 @@ default[:prism][:VxLaunch][:Commands][:as][:MaxPermSize]        =  "512m"
 #
 # portappmapping.properties
 ##############################################
-default[:prism][:portAppMappings]={} #"tropo"=>[6060]}
+default[:prism][:portAppMappings]={}
 
 #
 # sipmethod.xml
@@ -129,11 +129,11 @@ default[:prism][:autostart][:ms]  =  true
 # CONFIG.XML SECTION
 ##############################################
 
-default[:prism][:config][:DNS]                                   =  ["127.0.0.1:9962"]
-default[:prism][:config][:IO][:SMTPServer]                       =  ""
-default[:prism][:config][:IO][:SMTPPort]                         =  "25"
-default[:prism][:config][:IO][:Proxys]                           =  ""
-default[:prism][:config][:IO][:AllowLocalFileAccess]             =  1
+default[:prism][:vcs][:dns_servers]                             =  ["127.0.0.1:9962"]
+
+default[:prism][:vcs][:smtp_server]                              =  ""
+default[:prism][:vcs][:smtp_port]                                =  "25"
+default[:prism][:vcs][:allow_local_file_access]                  =  1
 
 default[:prism][:config][:Rtp][:BasePort]                        =  20000
 default[:prism][:config][:Rtp][:PayloadSize]                     =  160
@@ -141,15 +141,10 @@ default[:prism][:config][:Rtp][:SocketBuffer]                    =  10000
 default[:prism][:config][:Rtp][:DTMFDuration]                    =  120
 default[:prism][:config][:Rtp][:DTMFPause]                       =  240
 
-default[:prism][:sdp_parser_page_size]                           =  nil
-default[:prism][:initial_rtp_clients_count]                      =  nil
+default[:prism][:vcs][:sdp_parser_page_size]                     =  nil
+default[:prism][:vcs][:initial_rtp_clients_count]                =  nil
 
-default[:prism][:config][:Media][:ConferenceManagerURL]          =  "http://127.0.0.1:8080/com.voxeo.directory/"
-
-default[:prism][:config][:Log][:FileBase]                        =  "./logs/vcs/log"
-default[:prism][:config][:Log][:SysLogServer]                    =  ""
-default[:prism][:config][:Log][:MaxNumOfFiles]                   =  100
-default[:prism][:config][:Log][:MaxFileSize]                     =  104857600
+default[:prism][:vcs][:conference_manager_url]                   =  "http://127.0.0.1:8080/com.voxeo.directory/"
 
 default[:prism][:config][:AGS1][:HTTPCtrlPort]                   =  10099
 
@@ -189,8 +184,7 @@ default[:prism][:mcrp][:force_call_recording_debug]              =  false
 default[:prism][:mcrp][:listen_ip]                               =  "0.0.0.0"
 default[:prism][:mcrp][:log_level]                               =  8
 
-default[:prism][:config][:IO][:Proxys]                           =  []
-default[:prism][:config][:Log][:SysLogServer]                    =  ['localhost:9977']
+default[:prism][:vcs][:proxies]                                  =  []
 
 default[:prism][:config][:Rtp][:SDPCodecs]                       =  []
 default[:prism][:config][:Rtp][:BasePort]                        =  20000
@@ -212,6 +206,7 @@ default[:prism][:log4j][:append]                                 =  true
 default[:prism][:log4j][:max_file_size]                          =  '100MB'
 default[:prism][:log4j][:max_backup_index]                       =  30
 default[:prism][:log4j][:max_syslog_msg_size]                    =  nil
+
 
 default[:prism][:license_file]                                   =  "license_25_ports.lic"
 
