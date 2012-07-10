@@ -75,6 +75,15 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
     node[:prism][:registration_contact]
     node[:prism][:registration_expiration]
 
+
+##### RMI Config
+
+ Prism supports configuration via Mbean, the default usernam and password for the rmi interface is admin/admin.
+
+    node[:prism][:as][:rmi_username]
+    node[:prism][:as][:rmi_password]
+
+
 # USAGE:
 
 Note:  Should include 2 port unlocked license with any public release
@@ -131,3 +140,6 @@ Note:  Should include 2 port unlocked license with any public release
 
 [2.0.0]
    * Refactor cookbook recipes into single default.rb file
+
+[2.1.0]
+   * Added RMI config to chef

@@ -54,6 +54,9 @@ else
   #default[:prism][:public_ipv4]                               =  nil
 end
 
+default[:prism][:as][:rmi_username]                            =  "admin"
+default[:prism][:as][:rmi_password]                            =  "admin"
+
 default[:prism][:relay_port]                                   =  5060
 
 default[:prism][:netmask]                                      =  begin
