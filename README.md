@@ -128,3 +128,6 @@ Note:  Should include 2 port unlocked license with any public release
 
 [1.7.0]
    * Refactor of logging config to support muitple log4j syslog appenders
+
+[2.0.0]
+   * Refactor cookbook recipes into single default.rb file
