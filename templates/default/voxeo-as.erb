@@ -6,7 +6,7 @@
 # chkconfig: 35 55 25
 # description: Voxeo Prism Application Server
 # processname: AS
-# pidfile: <%=@prism_path%><%=node["prism"]["pid"]%>/voxeo-as.pid
+# pidfile: <%=@prism_path%><%=@pid_file%>/voxeo-as.pid
 
 # Source function library.      This creates the operating environment for the process to be started
 . /etc/init.d/functions
@@ -35,8 +35,8 @@ WaitForPidToExit() {
 
 
 
-PIDFILE=<%=@prism_path%><%=node["prism"]["pid"]%>/voxeo-as.pid
-LOCKFILE=<%=@prism_path%><%=node["prism"]["lock"]%>/voxeo-as
+PIDFILE=<%=@prism_path%><%=@pid_file%>/voxeo-as.pid
+LOCKFILE=<%=@prism_path%><%=@lock_file%>/voxeo-as
 CURRENT_USER=`id -u -n`
 
 
@@ -56,10 +56,10 @@ case "$1" in
   export HOME=<%=@prism_path%>
   export LD_LIBRARY_PATH=<%=@prism_path%>/bin:<%=@prism_path%>/lib:$LD_LIBRARY_PATH$
 
-  if [ "$CURRENT_USER" = <%=node["prism"]["user"]%> ]; then
+  if [ "$CURRENT_USER" = <%=@prism_user%> ]; then
     cd <%=@prism_path%>/bin; <%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null
   else
-    cd <%=@prism_path%>/bin; su <%=node["prism"]["user"]%> -s /bin/sh -p -c "<%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null"
+    cd <%=@prism_path%>/bin; su <%=@prism_user%> -s /bin/sh -p -c "<%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null"
   fi
 
   echo

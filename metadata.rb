@@ -5,6 +5,4 @@ description      "Installs/Configures Prism application server http://voxeo.com/
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "1.7.0"
 
-depends "nokogiri"
-depends "jmxsh"
-depends "artifacts"
+%w(nokogiri jmxsh artifacts).each{|lib| depends lib}
