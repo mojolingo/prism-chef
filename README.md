@@ -143,3 +143,7 @@ Note:  Should include 2 port unlocked license with any public release
 
 [2.1.0]
    * Added RMI config to chef
+
+[2.2.0]
+   * Added index.jsp to chef
+   * Added delete_console to chef

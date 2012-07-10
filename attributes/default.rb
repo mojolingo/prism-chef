@@ -11,6 +11,7 @@ default[:prism][:artifacts][:checksum]  =  'de15753d2f13af23964d70d620726895dd2d
 default[:prism][:install_sip_point]     =  false
 default[:prism][:install_tropo]         =  false
 
+default[:prism][:default_home]          =  "/console/Prism.jsp"
 #
 # Init.d stuff
 ##############################################

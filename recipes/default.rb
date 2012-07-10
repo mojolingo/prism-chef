@@ -340,6 +340,31 @@ script "chown_files" do
   EOH
 end
 
+template "#{prism_path}/apps/ROOT/index.jsp" do
+  source "index.jsp.erb"
+  owner o
+  group g
+  mode 0644
+  variables( :default_home => node[:prism][:default_home] )
+end
+
+directory "#{prism_path}/server/apps/console" do
+  owner o
+  group g
+  mode 0755
+  action :delete
+  recursive true
+  only_if do
+    node[:prism][:delete_console]
+  end
+end
+
+file "#{prism_path}/server/apps/console.sar" do
+  action :delete
+  only_if do
+    node[:prism][:delete_console]
+  end
+end
 
 service "voxeo-smanager" do
   action [:enable,:restart]

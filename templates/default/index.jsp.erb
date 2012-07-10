@@ -1,0 +1,6 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<%# for the record, ERB interpolation in JSP documents sucks big time %>
+<%%@ page session="false" %>
+<%= "<%" %>
+response.sendRedirect("<%= @default_home %>");
+%>
