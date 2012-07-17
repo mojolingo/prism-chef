@@ -147,3 +147,6 @@ Note:  Should include 2 port unlocked license with any public release
 [2.2.0]
    * Added index.jsp to chef
    * Added delete_console to chef
+
+[2.3.0]
+   * Updated log4j conversion patterns

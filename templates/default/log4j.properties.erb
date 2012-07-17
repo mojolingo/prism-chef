@@ -18,7 +18,7 @@ log4j.appender.FILE.Append=<%=@append_logs%>
 log4j.appender.FILE.MaxFileSize=<%=@max_file_size%>
 log4j.appender.FILE.MaxBackupIndex=<%=@max_backup_index%>
 log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
-log4j.appender.FILE.layout.ConversionPattern=%d{MMM dd HH:mm:ss} %X{HostName} Prism %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/%c/%m%n
+log4j.appender.FILE.layout.ConversionPattern=%d{MMM dd HH\:mm\:ss} %-5p %X{HostName} Prism %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] %m%n
 
 <% @syslog_servers.each_with_index do |server,index| -%>
 log4j.appender.SYSLOG<%=index%>=org.apache.log4j.net.SyslogAppender
@@ -26,7 +26,8 @@ log4j.appender.SYSLOG<%=index%>.SyslogHost=<%= server %>
 log4j.appender.SYSLOG<%=index%>.Threshold=<%= @logging_threshold %>
 log4j.appender.SYSLOG<%=index%>.UseTCP=<%= @use_tcp %>
 log4j.appender.SYSLOG<%=index%>.layout=com.voxeo.logging.EncodedPatternLayout
-log4j.appender.SYSLOG<%=index%>.layout.ConversionPattern=%d{MMM dd HH:mm:ss} %X{HostName} Prism %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/%c/%m%
+log4j.appender.SYSLOG<%=index%>.layout.ConversionPattern=%d{MMM dd HH\:mm\:ss} %-5p %X{HostName} Prism %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] %m%n
+
 <%= "log4j.appender.SYSLOG#{index}.layout.MaxMessageSize=#{@max_syslog_msg_size}" if @max_syslog_msg_size %>
 
 <% end -%>
@@ -39,6 +40,7 @@ log4j.appender.FILE_APP.MaxFileSize=30MB
 log4j.appender.FILE_APP.MaxBackupIndex=100
 log4j.appender.FILE_APP.layout=org.apache.log4j.PatternLayout
 log4j.appender.FILE_APP.layout.ConversionPattern=%d{MMM dd HH\:mm\:ss} %-5p %X{HostName} Tropo %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] %m%n
+
 <% end -%>
 
 log4j.logger.com.micromethod.sipmethod.server.http=INFO
