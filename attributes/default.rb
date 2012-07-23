@@ -1,3 +1,8 @@
+class Chef::Recipe
+  include Prism
+  include Artifacts
+end
+
 #
 # GENERAL
 ##############################################
@@ -42,17 +47,18 @@ default[:prism][:VxLaunch][:as][:default_connect_timeout]  =  60000
 default[:prism][:nat_mode]                                     =  false
 default[:prism][:osgi][:enabled]                               =  false
 default[:prism][:vcs][:check_packet_source]                    =  true
+
 if node[:ec2]
   default[:prism][:nat_mode]                                   =  true
   default[:prism][:local_ipv4]                                 =  node[:ec2][:local_ipv4]
   default[:prism][:public_ipv4]                                =  node[:ec2][:public_ipv4]
-elsif node[:openstack]
+elsif node.attribute?('openstack')
   default[:prism][:nat_mode]                                   =  true
   default[:prism][:local_ipv4]                                 =  node.ipaddress
   default[:prism][:public_ipv4]                                =  node[:openstack][:public_ipv4]
 else
   default[:prism][:local_ipv4]                                 =  node.ipaddress
-  #default[:prism][:public_ipv4]                               =  nil
+  default[:prism][:public_ipv4]                                =  Prism.get_public_ipv4
 end
 
 default[:prism][:as][:rmi_username]                            =  "admin"

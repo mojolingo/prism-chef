@@ -23,6 +23,19 @@ prism_path   =  node[:prism][:path][:prism]
 o            =  node[:prism][:user]
 g            =  node[:prism][:group]
 
+
+
+if (node.attribute?('ec2'))
+  public_ipv4 = node[:ec2][:public_ipv4]
+  local_ipv4 = node[:ec2][:local_ipv4]
+elsif node.attribute?('openstack')
+  local_ipv4 = node.ipaddress
+  public_ipv4  = node[:openstack][:public_ipv4]
+else
+  local_ipv4 = node.ipaddress
+  public_ipv4  = Prism.get_public_ipv4
+end
+
 ###############
 
 remote_file "#{prism_tmp}/#{prism_binary}" do
@@ -269,14 +282,16 @@ template "#{prism_path}/conf/vxlaunch.xml" do
 end
 
 template "#{prism_path}/conf/config.xml" do
+  Chef::Log.info("[PRISM] local_ipv4 => #{local_ipv4}")
+  Chef::Log.info("[PRISM] public_ipv4 => #{public_ipv4}")
   source "config.xml.erb"
   owner o
   group g
   mode 0664
   variables({
     :prism_path     =>  node[:prism][:path][:prism],
-    :local_ipv4     =>  node[:prism][:local_ipv4],
-    :public_ipv4    =>  node[:prism][:public_ipv4],
+    :local_ipv4     =>  local_ipv4,
+    :public_ipv4    =>  public_ipv4,
     :netmask        =>  node[:prism][:netmask],
     :tts_engines    =>  node[:prism][:tts_engines],
     :asr_engines    =>  node[:prism][:asr_engines]

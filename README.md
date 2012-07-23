@@ -150,3 +150,7 @@ Note:  Should include 2 port unlocked license with any public release
 
 [2.3.0]
    * Updated log4j conversion patterns
+
+[2.4.0]
+   * Use external server to determine IP if no other option works
+   * NAT mode is not configurable via node[:prism][:natmode] attribute

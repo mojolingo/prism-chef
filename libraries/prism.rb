@@ -126,6 +126,10 @@ module Prism
     end
   end
 
+  def self.get_public_ipv4
+    Net::HTTP.get('ip.voxeolabs.net', '/').split(":")[1][/\b(?:\d{1,3}\.){3}\d{1,3}\b/]
+  end
+
   def self.installer_options(node)
     if node[:prism][:install_sip_point] && node[:prism][:install_tropo]
       '-DCONSOLE_PRISM_MODULES=\"SIPoint\",\"Tropo\"' # ==> deploy SIPoint & Tropo

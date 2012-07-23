@@ -90,7 +90,11 @@
     <item name="AllowLocalFileAccess"><%=node[:prism][:vcs][:allow_local_file_access]%></item>
   </category>
   <category name="NAT">
+    <% if node[:prism][:nat_mode] -%>
     <item name="NATMapping0"><%= "#{@local_ipv4}=#{@public_ipv4}/#{@netmask}</item>" %>
+    <% else -%>
+    <item name="NATMapping0"/>
+    <%end -%>
   </category>
   <category name="Media">
     <item name="ConferenceManagerURL"><%= node[:prism][:vcs][:conference_manager_url] %></item>
