@@ -307,7 +307,7 @@ template "#{prism_path}/conf/sipmethod.xml" do
   owner o
   group g
   variables(
-  :osgi_enabled              =>  node[:prism][:osgi][:enabled],
+  :osgi_enabled              =>  node[:prism][:osgi_enabled],
   :mrcp_ip                   =>  node[:prism][:local_ipv4],   #node["ec2"] ? node["ec2"]["public_ipv4"] : node["prism"]["config"]["MRCPSRV"]["IP"] , # Ticket: 1615349
   :bosh_url                  =>  node[:prism][:sipmethod][:bosh][:url],
   :mrcp_port                 =>  node[:prism][:mrcp][:port],

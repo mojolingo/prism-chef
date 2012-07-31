@@ -23,19 +23,19 @@ function p() {
 ####################
 
 function pes() {
-  vim /opt/voxeo/prism/conf/sipmethod.xml
+  vi /opt/voxeo/prism/conf/sipmethod.xml
 }
 
 function pev() {
-  vim /opt/voxeo/prism/conf/vxlaunch.xml
+  vi /opt/voxeo/prism/conf/vxlaunch.xml
 }
 
 function pec() {
-  vim /opt/voxeo/prism/conf/config.xml
+  vi /opt/voxeo/prism/conf/config.xml
 }
 
 function pet() {
-  vim /opt/voxeo/prism/server/apps/tropo/WEB-INF/classes/tropo.xml
+  vi /opt/voxeo/prism/server/apps/tropo/WEB-INF/classes/tropo.xml
 }
 
 

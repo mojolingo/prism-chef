@@ -45,7 +45,7 @@ default[:prism][:VxLaunch][:as][:default_connect_timeout]  =  60000
 ## NAT MAPPING STUFF
 # This is used for nat mapping config, if not using please leave set to nil
 default[:prism][:nat_mode]                                     =  false
-default[:prism][:osgi][:enabled]                               =  false
+default[:prism][:osgi_enabled]                                 =  false
 default[:prism][:vcs][:check_packet_source]                    =  true
 
 if node[:ec2]
@@ -61,8 +61,8 @@ else
   default[:prism][:public_ipv4]                                =  Prism.get_public_ipv4
 end
 
-default[:prism][:as][:rmi_username]                            =  "admin"
-default[:prism][:as][:rmi_password]                            =  "admin"
+default[:prism][:as][:rmi_username]                            =  "voxeolabs"
+default[:prism][:as][:rmi_password]                            =  "voxeolabs"
 
 default[:prism][:relay_port]                                   =  5060
 
@@ -121,8 +121,8 @@ default[:prism][:sipmethod][:bosh][:url]                        =  "/http-bind"
 #
 # sipmethod-users.xml
 ##############################################
-default[:prism][:sipmethod_users][:admin_username]              =  "admin"
-default[:prism][:sipmethod_users][:admin_password]              =  "admin"
+default[:prism][:sipmethod_users][:admin_username]              =  "voxeolabs"
+default[:prism][:sipmethod_users][:admin_password]              =  "voxeolabs"
 default[:prism][:sipmethod_users][:number_of_test_users]        =  5
 #
 # sipenv.properties

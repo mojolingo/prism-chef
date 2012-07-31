@@ -161,3 +161,9 @@ Note:  Should include 2 port unlocked license with any public release
 [2.5.0]
    * Changed default bosh url to be http-bind
 
+[2.6.0]
+   * Added additional logging for installer resource
+   * Fix SIPoint and Tropo installer method in Prism library
+   * Changed default username for RMI and MC to voxeolabs/voxeolabs
+   * Change edit alias ( pec, pec, ect ) to use VI reather then VIM
+   * Change OSGI Attribute name
