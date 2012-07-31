@@ -67,7 +67,7 @@ default[:prism][:as][:rmi_password]                            =  "admin"
 default[:prism][:relay_port]                                   =  5060
 
 default[:prism][:netmask]                                      =  begin
-  node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask] #=""
+  node[:network][:interfaces][node[:network][:default_interface]][:addresses][node.ipaddress][:netmask]
 rescue Exception => e
   "255.255.255.0"
 end
@@ -139,7 +139,7 @@ default[:prism][:autostart][:ms]  =  true
 # CONFIG.XML SECTION
 ##############################################
 
-default[:prism][:vcs][:dns_servers]                             =  ["127.0.0.1:9962"]
+default[:prism][:vcs][:dns_servers]                              =  ["127.0.0.1:9962"]
 
 default[:prism][:vcs][:smtp_server]                              =  ""
 default[:prism][:vcs][:smtp_port]                                =  "25"
