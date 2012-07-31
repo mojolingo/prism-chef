@@ -5,7 +5,7 @@
 #
 # chkconfig: 35 55 25
 # description: Voxeo Prism Application Server
-# processname: AS
+# processname: as
 # pidfile: <%=@prism_path%><%=@pid_file%>/voxeo-as.pid
 
 # Source function library.      This creates the operating environment for the process to be started
@@ -33,12 +33,9 @@ WaitForPidToExit() {
 	fi
 }
 
-
-
 PIDFILE=<%=@prism_path%><%=@pid_file%>/voxeo-as.pid
 LOCKFILE=<%=@prism_path%><%=@lock_file%>/voxeo-as
 CURRENT_USER=`id -u -n`
-
 
 case "$1" in
   start)
@@ -52,18 +49,17 @@ case "$1" in
       fi
     fi
 
+    export HOME=<%=@prism_path%>
+    export LD_LIBRARY_PATH=<%=@prism_path%>/bin:<%=@prism_path%>/lib:$LD_LIBRARY_PATH$
 
-  export HOME=<%=@prism_path%>
-  export LD_LIBRARY_PATH=<%=@prism_path%>/bin:<%=@prism_path%>/lib:$LD_LIBRARY_PATH$
+    if [ "$CURRENT_USER" = <%=@prism_user%> ]; then
+      cd <%=@prism_path%>/bin; <%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null
+    else
+      cd <%=@prism_path%>/bin; su <%=@prism_user%> -s /bin/sh -p -c "<%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null"
+    fi
 
-  if [ "$CURRENT_USER" = <%=@prism_user%> ]; then
-    cd <%=@prism_path%>/bin; <%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null
-  else
-    cd <%=@prism_path%>/bin; su <%=@prism_user%> -s /bin/sh -p -c "<%=@prism_path%>/bin/prism service as PIDFILE=$PIDFILE 2>&1 >>/dev/null"
-  fi
-
-  echo
-  touch $LOCKFILE
+    echo
+    touch $LOCKFILE
   ;;
 
   stop)
@@ -102,7 +98,7 @@ case "$1" in
   reload)
     echo -n "Reloading AS: "
     killproc voxeo-as -HUP
-  echo
+    echo
   ;;
 
   *)

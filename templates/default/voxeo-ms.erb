@@ -40,15 +40,14 @@ CURRENT_USER=`id -u -n`
 case "$1" in
   start)
     echo -n "Starting  MS: "
-
     if [ -e $PIDFILE ]; then
       pid=`cat $PIDFILE`
       result=$(ps ax -o pid,command | grep $pid | grep VCS)
       if [ "$result" != "" ]; then
         echo "  Media Server Already running.  Stop it first."
         exit 1
-        fi
       fi
+    fi
 
     export HOME=<%=@prism_path%>
     export LD_LIBRARY_PATH=<%=@prism_path%>/bin:<%=@prism_path%>/lib:$LD_LIBRARY_PATH$
@@ -71,17 +70,15 @@ case "$1" in
 
   stop)
     echo -n "Shutting down MS: "
-
     if [ -e $PIDFILE ]; then
       kill `cat $PIDFILE`
       WaitForPidToExit
+      rm -f $LOCKFILE
+      rm -f $PIDFILE
     else
       echo "  ms not running."
     fi
-
     echo
-    rm -f $LOCKFILE
-    rm -f $PIDFILE
   ;;
 
   status)
