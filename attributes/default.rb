@@ -117,7 +117,7 @@ default[:prism][:cluster_peers]                                 =  []
 
 default[:prism][:sipmethod][:phono_interceptor][:enabled]       =  false
 default[:prism][:sipmethod][:bosh][:enabled]                    =  false
-default[:prism][:sipmethod][:bosh][:url]                        =  "/prism_bosh"
+default[:prism][:sipmethod][:bosh][:url]                        =  "/http-bind"
 #
 # sipmethod-users.xml
 ##############################################

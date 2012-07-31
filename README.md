@@ -157,3 +157,6 @@ Note:  Should include 2 port unlocked license with any public release
 
 [2.4.1]
    * Patches to init.d script
+[2.5.0]
+   * Changed default bosh url to be http-bind
+
