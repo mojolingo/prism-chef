@@ -9,8 +9,10 @@ end
 default[:prism][:user]    = "voxeo"
 default[:prism][:group]   = "voxeo"
 
-default[:prism][:artifacts][:url]       =  "https://prism-app-server.s3.amazonaws.com/release/prism-11_5_1_C201204261102_0-x64.bin"
-default[:prism][:artifacts][:checksum]  =  'de15753d2f13af23964d70d620726895dd2d5c31d4f22df6e1ce2bd85a4c192e'
+default[:prism][:artifacts][:url]       =  "https://prism-app-server.s3.amazonaws.com/daily/prism-11_5_3_C201207041614_0-x64.bin"
+default[:prism][:artifacts][:checksum]  =  'c26ce756ff20bd3df7405d8f1e111e13a0c917186d596e6598dddbd3f0219e9a'
+
+
 
 # By default we want to keep from installing tropo and sipoint
 default[:prism][:install_sip_point]     =  false
@@ -44,7 +46,7 @@ default[:prism][:VxLaunch][:as][:default_connect_timeout]  =  60000
 
 ## NAT MAPPING STUFF
 # This is used for nat mapping config, if not using please leave set to nil
-default[:prism][:nat_mode]                                     =  false
+
 default[:prism][:osgi_enabled]                                 =  false
 default[:prism][:vcs][:check_packet_source]                    =  true
 
@@ -57,6 +59,7 @@ elsif node.attribute?('openstack')
   default[:prism][:local_ipv4]                                 =  node.ipaddress
   default[:prism][:public_ipv4]                                =  node[:openstack][:public_ipv4]
 else
+  default[:prism][:nat_mode]                                   =  false
   default[:prism][:local_ipv4]                                 =  node.ipaddress
   default[:prism][:public_ipv4]                                =  Prism.get_public_ipv4
 end

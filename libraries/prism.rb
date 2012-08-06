@@ -132,18 +132,19 @@ module Prism
 
   def self.installer_options(node)
     if node[:prism][:install_sip_point] && node[:prism][:install_tropo]
-      "-DCONSOLE_PRISM_MODULES='SIPoint','Tropo'" # ==> deploy SIPoint & Tropo
+      '-DCONSOLE_PRISM_MODULES=\"SIPoint\",\"Tropo\"' # ==> deploy SIPoint & Tropo
     else
       if node[:prism][:install_sip_point]
-        "-DCONSOLE_PRISM_MODULES='SIPoint'" # ==> deploy SIPoint
+        '-DCONSOLE_PRISM_MODULES=\"SIPoint\"' # ==> deploy SIPoint
       elsif node[:prism][:install_tropo]
-        "-DCONSOLE_PRISM_MODULES='Tropo'" # ==> deploy Tropo
+        '-DCONSOLE_PRISM_MODULES=\"Tropo\"' # ==> deploy Tropo
       else
         #'-DCONSOLE_PRISM_MODULES=\"\",\"\"' Should work but doesnt, FML InstallAnywhere
-        "-DCONSOLE_PRISM_MODULES_BOOLEAN_1=0 -DCONSOLE_PRISM_MODULES_BOOLEAN_2=0"  # ==> deploy nothing
+        '-DCONSOLE_PRISM_MODULES_BOOLEAN_1=0 -DCONSOLE_PRISM_MODULES_BOOLEAN_2=0'  # ==> deploy nothing
       end
     end
   end
+
 
   class << self
     alias active_sessions jmx

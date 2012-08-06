@@ -167,3 +167,6 @@ Note:  Should include 2 port unlocked license with any public release
    * Changed default username for RMI and MC to voxeolabs/voxeolabs
    * Change edit alias ( pec, pec, ect ) to use VI reather then VIM
    * Change OSGI Attribute name
+[2.7.0]
+   * Updated default prism build to prism-11_5_3_C201207041614_0-x64.bin
+   * Fixed installer options, guess it needs double quotes
