@@ -35,11 +35,15 @@ default[:prism][:cust_home]             =  "/custhome"
 # VXLAUNCH.XML SECTION
 ##############################################
 default[:prism][:runtime_mode]                             =  "server"
+
+default[:prism][:VxLaunch][:extra_services]                =  []
+
 default[:prism][:VxLaunch][:http_control_port]             =  10086
 
-default[:prism][:VxLaunch][:rtmpd][:enabled]               =  false
-default[:prism][:VxLaunch][:panda][:enabled]               =  false
+#default[:prism][:VxLaunch][:rtmpd][:enabled]               =  false
+#default[:prism][:VxLaunch][:panda][:enabled]               =  false
 
+default[:prism][:ld_library_extras]                        =  []
 default[:prism][:VxLaunch][:as][:cache]                    =  60
 default[:prism][:VxLaunch][:as][:default_read_timeout]     =  60000
 default[:prism][:VxLaunch][:as][:default_connect_timeout]  =  60000

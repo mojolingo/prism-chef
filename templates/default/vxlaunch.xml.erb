@@ -29,47 +29,30 @@
       <item name="SysLogEnabled" type="int"> 1 </item>
       <item name="SysLogFilter" type="int">-1</item>
       <item name="SysLogBroadCast" type="int">1</item>
-      <% node[:prism][:VxLaunch][:Log][:syslog_servers].each_with_index do |host,index| -%>
+      <% @syslog_servers.each_with_index do |host,index| -%>
       <item name='SysLogServer<%=index%>'><%=host%></item>
       <% end -%>
       <item name="SplunkEnabled">1</item>
     </category>
   </category>
   <category name="Commands">
-  <% if node[:prism][:VxLaunch][:rtmpd][:enabled] -%>
-      <category name="rtmpd">
-      <item name="LongName">RTMPD</item>
-      <item name="exe" platform="linux"><%=node[:prism][:rtmpd][:dir]%>/rtmpserver</item>
-      <item name="Default" platform="linux"><%=node[:prism][:rtmpd][:dir]%>/rtmpserver.lua</item>
-      <item name="cwd">2</item>
-      <item name="CwdDir"><%=node[:prism][:rtmpd][:dir]%></item>
-      <item name="description"> Launches RTMPD </item>
-      <item name="StartupTimeout" type="int">30</item>
-      <item name="ShutdownOptions" type="int">4</item>
-      <item name="ShutdownTimeout" type="int">30</item>
-      <item name="SyslogServer">1</item>
-      <item name="ExitCodes"/>
-      <item name="AppType" type="int">65</item>
-      <item name="Priority"> </item>
+  <% @extra_services.each do |service| -%>
+    <category name="<%=service[:name] %>">
+      <item name="LongName"><%= service[:name].capitalize %></item>
+      <item name="exe" platform="linux"><%= service[:executable] %> </item>
+      <item name="Default" platform="linux"><%= service[:default] %> </item>
+      <item name="cwd"><%= service[:cwd] %></item>
+      <item name="CwdDir"><%= service[:cwd_dir] %></item>
+      <item name="description"> <%= service[:description] %> </item>
+      <item name="StartupTimeout" type="int"><%= service[:startup_timeout] %></item>
+      <item name="ShutdownOptions" type="int"><%= service[:shutdown_options] %></item>
+      <item name="ShutdownTimeout" type="int"><%= service[:shutdown_timeout] %></item>
+      <item name="SyslogServer"><%= service[:syslog_server] %></item>
+      <item name="ExitCodes"><%= service[:exit_codes] %></item>
+      <item name="AppType" type="int"><%= service[:app_type] %></item>
+      <item name="Priority"><%= service[:priority] %></item>
     </category>
-  <% end -%>
-   <% if node[:prism][:VxLaunch][:panda][:enabled] -%>
-    <category name="panda">
-      <item name="LongName">Panda</item>
-      <item name="exe" platform="linux"><%=node[:prism][:panda][:dir]%>/bin/bamboo.py</item>
-      <item name="Default" platform="linux"><%=node[:prism][:panda][:dir]%>/conf/bamboo.conf</item>
-      <item name="cwd">2</item>
-      <item name="CwdDir"><%=node[:prism][:panda][:dir]%></item>
-      <item name="description"> Launches Panda </item>
-      <item name="StartupTimeout" type="int">30</item>
-      <item name="ShutdownOptions" type="int">4</item>
-      <item name="ShutdownTimeout" type="int">30</item>
-      <item name="SyslogServer">1</item>
-      <item name="ExitCodes"/>
-      <item name="AppType" type="int">65</item>
-      <item name="Priority"> </item>
-    </category>
-  <% end -%>
+  <%end -%>
     <category name="as-debug">
       <item name="LongName"> Voxeo Prism Application Server Debug Mode </item>
       <item name="Java"> true </item>
