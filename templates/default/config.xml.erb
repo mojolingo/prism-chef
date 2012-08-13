@@ -121,7 +121,7 @@
     <item name="SysLogEnabled" type="int">1</item>
     <item name="SysLogFilter" type="int">-1</item>
     <item name="SysLogBroadCast" type="int">1</item>
-    <% node[:prism][:vcs][:syslog_servers].each_with_index do |host,index| -%>
+    <% node[:prism][:syslog_servers].each_with_index do |host,index| -%>
       <%= "<item name='SysLogServer#{index}'>#{host}</item>" %>
     <% end -%>
   </category>

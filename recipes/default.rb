@@ -245,7 +245,7 @@ template "#{prism_path}/conf/log4j.properties" do
     :append_logs           =>  node[:prism][:log4j][:append],
     :max_file_size         =>  node[:prism][:log4j][:max_file_size],
     :max_backup_index      =>  node[:prism][:log4j][:max_backup_index],
-    :root_logger           =>  node[:prism][:log4j][:root_logger] + node[:prism][:log4j][:syslog_servers].count.times.map{|i| "SYSLOG#{i}"}
+    :root_logger           =>  node[:prism][:log4j][:root_logger] + node[:prism][:syslog_servers].count.times.map{|i| "SYSLOG#{i}"}
 
   })
   notifies :restart, resources(:service => "voxeo-as")

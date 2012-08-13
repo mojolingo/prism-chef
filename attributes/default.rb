@@ -80,7 +80,6 @@ end
 ##############################################
 default[:prism][:VxLaunch][:Log][:max_file_size]                =  5242880
 default[:prism][:VxLaunch][:Log][:max_num_of_files]             =  10
-default[:prism][:VxLaunch][:Log][:syslog_servers]               =  ["127.0.0.1:9977"]
 
 #
 # App Server (debug) section of vxlaunch.xml
@@ -199,7 +198,6 @@ default[:prism][:mcrp][:log_level]                               =  8
 
 default[:prism][:vcs][:proxies]                                  =  []
 
-default[:prism][:vcs][:syslog_servers]                           =  ['localhost:9977']
 default[:prism][:vcs][:file_base]                                =  "./logs/vcs/log"
 default[:prism][:vcs][:max_number_of_files]                      =  100
 default[:prism][:vcs][:max_file_size]                            =  104857600
@@ -214,11 +212,10 @@ default[:prism][:config][:Rtp][:DTMFPause]                       =  240
 
 
 # Prism AS Log4j config
-default[:prism][:include_tropo_logger]                           = !node.run_list.recipe_names.select{|x| x=~/tropo/}.empty?
+default[:prism][:include_tropo_logger]                           = !node.run_list.expand(node.chef_environment).recipes.select{|x| x=~/tropo/}.empty?
 
-default[:prism][:log4j][:syslog_servers]                        =  ["127.0.0.1:9977"]
+default[:prism][:syslog_servers]                                 =  ["127.0.0.1:9977"]
 default[:prism][:log4j][:root_logger]                            =  %w(DEBUG FILE)
-default[:prism][:log4j][:logger][:voxeo]                         =  %w(DEBUG FILE_APP SYSLOG)
 
 default[:prism][:log4j][:syslog][:threshold]                     =  "DEBUG"
 default[:prism][:log4j][:syslog][:tcp]                           =  false
