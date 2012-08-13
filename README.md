@@ -170,3 +170,7 @@ Note:  Should include 2 port unlocked license with any public release
 [2.7.0]
    * Updated default prism build to prism-11_5_3_C201207041614_0-x64.bin
    * Fixed installer options, guess it needs double quotes
+   * Updated conversion patterns on log4j
+   * Fix include_tropo_logger setting, not correctly searchs role to see if Tropo is included
+   * Now only a single syslog attribute.  This controls VXLuanch, log4j, and VCS syslog appenders
+   * VXLaunch now takes an array of "extra_services", eg rtmpd and panda

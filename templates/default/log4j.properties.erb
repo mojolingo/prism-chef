@@ -2,14 +2,16 @@
 
 log4j.rootLogger=<%= @root_logger.join(", ")%>
 <% if @include_tropo_logger -%>
-log4j.logger.com.tropo=DEBUG, FILE_APP, SYSLOG
-log4j.logger.com.voxeo.tropo=DEBUG, FILE_APP, SYSLOG
+log4j.logger.com.tropo=DEBUG, FILE_APP<%= ", " + @syslog_servers.count.times.map{|i| "SYSLOG#{i}"}.join(", ") unless @syslog_servers.empty? %>
+log4j.logger.com.voxeo=DEBUG, FILE_APP<%= ", " + @syslog_servers.count.times.map{|i| "SYSLOG#{i}"}.join(", ") unless @syslog_servers.empty? %>
 <% end -%>
 
+
+(1..@syslog_servers.count).collect{|x| "SYSLOG#{x-1}"}.join(", ")
 log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
 log4j.appender.CONSOLE.Target=System.out
 log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
-log4j.appender.CONSOLE.layout.ConversionPattern=%d{MMM dd HH\:mm\:ss} %-5p %X{AccountID} %m%n
+log4j.appender.CONSOLE.layout.ConversionPattern=%d{MMM dd HH:mm:ss} %-5p %X{AccountID} %m%n
 
 log4j.appender.FILE=com.micromethod.common.util.LimitedFileAppender
 log4j.appender.FILE.File=${kernel.home}/logs/sipmethod.log
@@ -18,7 +20,11 @@ log4j.appender.FILE.Append=<%=@append_logs%>
 log4j.appender.FILE.MaxFileSize=<%=@max_file_size%>
 log4j.appender.FILE.MaxBackupIndex=<%=@max_backup_index%>
 log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
-log4j.appender.FILE.layout.ConversionPattern=%d{MMM dd HH\:mm\:ss} %-5p %X{HostName} Prism %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] %m%n
+<% if @include_tropo_logger -%>
+log4j.appender.FILE.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %-5p %X{HostName} TROPO %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] [%t] %m%n
+<% else -%>
+log4j.appender.FILE.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] %m%n
+<% end -%>
 
 <% @syslog_servers.each_with_index do |server,index| -%>
 log4j.appender.SYSLOG<%=index%>=org.apache.log4j.net.SyslogAppender
@@ -26,10 +32,8 @@ log4j.appender.SYSLOG<%=index%>.SyslogHost=<%= server %>
 log4j.appender.SYSLOG<%=index%>.Threshold=<%= @logging_threshold %>
 log4j.appender.SYSLOG<%=index%>.UseTCP=<%= @use_tcp %>
 log4j.appender.SYSLOG<%=index%>.layout=com.voxeo.logging.EncodedPatternLayout
-log4j.appender.SYSLOG<%=index%>.layout.ConversionPattern=%d{MMM dd HH\:mm\:ss} %-5p %X{HostName} Prism %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] %m%n
-
+log4j.appender.SYSLOG<%=index%>.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %X{HostName} TROPO %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/%X{CallID}/%m%n
 <%= "log4j.appender.SYSLOG#{index}.layout.MaxMessageSize=#{@max_syslog_msg_size}" if @max_syslog_msg_size %>
-
 <% end -%>
 
 <% if @include_tropo_logger -%>
@@ -39,8 +43,7 @@ log4j.appender.FILE_APP.Append=true
 log4j.appender.FILE_APP.MaxFileSize=30MB
 log4j.appender.FILE_APP.MaxBackupIndex=100
 log4j.appender.FILE_APP.layout=org.apache.log4j.PatternLayout
-log4j.appender.FILE_APP.layout.ConversionPattern=%d{MMM dd HH\:mm\:ss} %-5p %X{HostName} Tropo %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] %m%n
-
+log4j.appender.FILE_APP.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %-5p %X{HostName} TROPO %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] [%t] %m%n
 <% end -%>
 
 log4j.logger.com.micromethod.sipmethod.server.http=INFO
@@ -52,3 +55,14 @@ log4j.logger.org.apache=ERROR
 log4j.logger.org.hibernate=ERROR
 log4j.logger.org.jgroups=ERROR
 log4j.logger.com.micromethod.sipmethod.server.container.impl.loader=INFO
+
+log4j.logger.com.mot.mrcp.mrcpv1.rtsp.SelectorManager=ERROR
+log4j.logger.com.voxeo.grammartranslator.grammar=ERROR
+log4j.logger.com.mot.mrcp.ec.motomrcpv1.MotV1MRCPASRConnection=ERROR
+log4j.logger.com.micromethod.sipmethod.server.sip.transaction=ERROR
+log4j.logger.com.micromethod.sipmethod.server.sip.path=ERROR
+log4j.logger.com.micromethod.sipmethod.server.container.impl.sip.SipServletWrapper=ERROR
+log4j.logger.com.micromethod.sipmethod.server.sip.session.SessionManagementLayer=ERROR
+log4j.logger.org.jgroups.protocols.pbcast.GMS=DEBUG
+log4j.logger.org.jgroups.protocols.pbcast.FLUSH=DEBUG
+log4j.logger.org.jgroups.protocols.PEER_LOCK=DEBUG
