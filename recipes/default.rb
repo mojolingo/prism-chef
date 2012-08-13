@@ -258,7 +258,10 @@ template "#{prism_path}/bin/prism" do
   owner o
   group g
   mode 0774
-
+  variables({
+    :prism_path         => node[:prism][:path][:prism],
+    :ld_library_extras  => node[:prism][:ld_library_extras]
+  })
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
 
@@ -271,8 +274,10 @@ template "#{prism_path}/conf/vxlaunch.xml" do
   group g
   mode 0664
   variables({
-    :glibc_hack => Prism.requires_glibc_patch(node[:kernel][:machine]),
-    :prism_home => prism_path
+    :glibc_hack      =>  Prism.requires_glibc_patch(node[:kernel][:machine]),
+    :prism_home      =>  prism_path,
+    :syslog_servers  =>  node[:prism][:syslog_servers],
+    :extra_services  =>  node[:prism][:VxLaunch][:extra_services]
   })
   notifies :restart, resources(:service => "voxeo-as")
   notifies :restart, resources(:service => "voxeo-ms")
