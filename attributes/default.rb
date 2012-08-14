@@ -216,7 +216,12 @@ default[:prism][:config][:Rtp][:DTMFPause]                       =  240
 
 
 # Prism AS Log4j config
-default[:prism][:include_tropo_logger]                           = !node.run_list.expand(node.chef_environment).recipes.select{|x| x=~/tropo/}.empty?
+if Chef::Config[:solo]
+  default[:prism][:include_tropo_logger]                           = !node.run_list.expand("_default","disk").recipes.select{|x| x=~/tropo/}.empty?
+else
+  default[:prism][:include_tropo_logger]                           = !node.run_list.expand(node.chef_environment).recipes.select{|x| x=~/tropo/}.empty?
+end
+
 
 default[:prism][:syslog_servers]                                 =  ["127.0.0.1:9977"]
 default[:prism][:log4j][:root_logger]                            =  %w(DEBUG FILE)
