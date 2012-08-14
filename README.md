@@ -174,3 +174,6 @@ Note:  Should include 2 port unlocked license with any public release
    * Fix include_tropo_logger setting, not correctly searchs role to see if Tropo is included
    * Now only a single syslog attribute.  This controls VXLuanch, log4j, and VCS syslog appenders
    * VXLaunch now takes an array of "extra_services", eg rtmpd and panda
+
+[2.8.0]
+   * Switched from nokogiri to rexml/document for XML parsing

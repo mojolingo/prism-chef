@@ -1,6 +1,7 @@
 module Prism
   require 'rubygems' if RUBY_VERSION < "1.9"
-  %w(net/http ipaddr nokogiri).each{|lib| require lib}
+  %w(net/http ipaddr rexml/document).each{|lib| require lib}
+
 
   def self.get_header(uri,header='x-amz-meta-sha256-hash', port=80)
     uri = URI(uri)
@@ -33,7 +34,9 @@ module Prism
     http = Net::HTTP.new("#{ip_address}",port)
     http.read_timeout = 2
     http.open_timeout = 2
-    r = Nokogiri::XML(http.get("/stats_10?type=cooked").body).xpath("//counters/item[@name='MRCP/Sessions']").text.to_i
+    r = REXML::Document.new(http.get("/stats_10?type=cooked").body).elements.each("//counters/item[@name='MRCP/Sessions']"){|ele| ele}.first.text.to_i
+    #http.get("/stats_10?type=cooked").body.elements.each("//counters/item[@name='MRCP/Sessions']"){|ele| p ele.text.to_i}
+    #r = Nokogiri::XML(http.get("/stats_10?type=cooked").body).xpath("//counters/item[@name='MRCP/Sessions']").text.to_i
     Chef::Log.info("[PRISM] MRCP Sessions (#{ip_address}) ====> #{r}")
     return r
   rescue Timeout::Error, Errno::EHOSTDOWN, Errno::ECONNREFUSED => e
@@ -47,7 +50,8 @@ module Prism
     http = Net::HTTP.new("#{ip_address}",port)
     http.read_timeout = 2
     http.open_timeout = 2
-    r = Nokogiri::XML(http.get("/scm_10?action=status").body).xpath("//config/category/category[@name='ms']/item[@name='Status']").text.strip.eql?("Running")
+    r = REXML::Document.new(http.get("/scm_10?action=status").body).elements.each("//config/category/category[@name='ms']/item[@name='Status']"){|ele| ele}.first.text.strip.eql?("Running")
+    #r = Nokogiri::XML(http.get("/scm_10?action=status").body).xpath("//config/category/category[@name='ms']/item[@name='Status']").text.strip.eql?("Running")
     Chef::Log.info("[PRISM] media_server_running? (#{ip_address}) ====> #{r}")
     return r
   rescue Timeout::Error, Errno::EHOSTDOWN, Errno::ECONNREFUSED => e
@@ -61,7 +65,8 @@ module Prism
     http = Net::HTTP.new("#{ip_address}",port)
     http.read_timeout = 2
     http.open_timeout = 2
-    r = Nokogiri::XML(http.get("/scm_10?action=status").body).xpath("//config/category/category[@name='as']/item[@name='Status']").text.strip.eql?("Running")
+    r = REXML::Document.new(http.get("/scm_10?action=status").body).elements.each("//config/category/category[@name='as']/item[@name='Status']"){|ele| ele}.first.text.strip.eql?("Running")
+    #r = Nokogiri::XML(http.get("/scm_10?action=status").body).xpath("//config/category/category[@name='as']/item[@name='Status']").text.strip.eql?("Running")
     Chef::Log.info("[PRISM] app_server_running? (#{ip_address}) ====> #{r}")
     return r
   rescue Timeout::Error, Errno::EHOSTDOWN, Errno::ECONNREFUSED => e
@@ -107,8 +112,6 @@ module Prism
   end
 
   def self.jmx(opts={})
-    %w(net/http nokogiri).each{|lib| require lib}
-
     opts={
       :port => 47520,
       :ip   => 'localhost',

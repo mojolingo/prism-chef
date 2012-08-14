@@ -13,7 +13,7 @@ class Chef::Recipe
   include Artifacts
 end
 
-include_recipe "nokogiri"
+#include_recipe "nokogiri"
 include_recipe "jmxsh"
 
 artifact_url =  node[:prism][:artifacts][:url]
