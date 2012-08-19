@@ -183,10 +183,8 @@ default['prism']['asr_engines']    =  [
                                     ]
 
 case node['platform']
-  when "mac_os_x"
-    default[:prism][:config][:TTS][:platform]  =  "osx"
-  when "redhat","centos", "amazon","ubuntu"
-    default[:prism][:config][:TTS][:platform]  =  "linux"
+  when "mac_os_x" then default['prism']['config']['TTS']['platform']  =  "osx"
+  when "redhat","centos", "amazon","scientific","ubuntu" then default['prism']['config']['TTS']['platform']  =  "linux"
 end
 
 #default["prism"]["config"]["MRCPSRV"]["IP"]="0.0.0.0"

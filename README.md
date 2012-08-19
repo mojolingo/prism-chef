@@ -178,4 +178,5 @@ Note:  Should include 2 port unlocked license with any public release
 [2.8.0]
    * Switched from nokogiri to rexml/document for XML parsing
    * Guards around node search in attributes file.  We use this to determin if Tropo is present.
+   * Fix foodcritic FC24
    * Fix FC01 error
