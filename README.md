@@ -179,5 +179,6 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
 [2.8.1]
    * Only use a licnese.lic file if defined [internal use only]
    * by default don't delete the prism demo application
+   * Dry'ed up a few blocks related to voxeo-as,voxeo-ms, and voxeo-smanager.
    * Fix foodcritic FC24
    * Fix FC01 error
