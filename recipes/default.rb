@@ -13,7 +13,6 @@ class Chef::Recipe
   include Artifacts
 end
 
-#include_recipe "nokogiri"
 include_recipe "jmxsh"
 
 artifact_url =  node['prism']['artifacts']['url']
@@ -100,50 +99,22 @@ end
   end
 end
 
-template "/etc/init.d/voxeo-as" do
-  source "voxeo-as.erb"
-  owner o
-  group g
-  mode 0770
-  variables({
-    :prism_path  =>  prism_path,
-    :pid_file    =>  node[:prism][:pid],
-    :lock_file   =>  node[:prism][:lock],
-    :prism_user  =>  node[:prism][:user]
-  })
-  #notifies :enable, "service[voxeo-as]", :immediately
-end
+%w(voxeo-as voxeo-ms voxeo-smanager).each do |s|
+  template "/etc/init.d/#{s}" do
+    source "#{s}.erb"
+    owner o
+    group g
+    mode 0770
+    variables({
+      :prism_path  =>  prism_path,
+      :pid_file    =>  node['prism']['pid'],
+      :lock_file   =>  node['prism']['lock'],
+      :prism_user  =>  node['prism']['user']
+    })
+    #notifies :enable, "service[voxeo-as]", :immediately
+  end
 
-template "/etc/init.d/voxeo-ms" do
-  source "voxeo-ms.erb"
-  owner o
-  group g
-  mode 0770
-  variables({
-    :prism_path  =>  prism_path,
-    :pid_file    =>  node[:prism][:pid],
-    :lock_file   =>  node[:prism][:lock],
-    :prism_user  =>  node[:prism][:user]
-  })
-  #notifies :enable, "service[voxeo-ms]", :immediately
-end
-
-template "/etc/init.d/voxeo-smanager" do
-  source "voxeo-smanager.erb"
-  mode 0770
-  owner o
-  group g
-  variables({
-    :prism_path  =>  prism_path,
-    :pid_file    =>  node[:prism][:pid],
-    :lock_file   =>  node[:prism][:lock],
-    :prism_user  =>  node[:prism][:user]
-  })
-  #notifies :enable, "service[voxeo-smanager]", :immediately
-end
-
-%w(voxeo-as voxeo-ms voxeo-smanager).each do |srv|
-  service srv do
+  service s do
     action [:enable]
   end
 end
@@ -398,17 +369,9 @@ file "#{prism_path}/server/apps/console.sar" do
   end
 end
 
-service "voxeo-smanager" do
-  action [:enable,:restart]
-  supports :status=>true, :restart=>true
-end
-
-service "voxeo-as" do
-  action [:enable,:nothing]
-  supports :status=>true, :restart=>true
-end
-
-service "voxeo-ms" do
-  action [:enable,:nothing]
-  supports :status=>true, :restart=>true
+%w(voxeo-smanager voxeo-as voxeo-ms).each do |s|
+  service s do
+    action [:enable,:restart]
+    supports :status=>true, :restart=>true
+  end
 end
