@@ -134,12 +134,12 @@ module Prism
   end
 
   def self.installer_options(node)
-    if node[:prism][:install_sip_point] && node[:prism][:install_tropo]
+    if node['prism']['install_sip_point'] && node['prism']['install_tropo']
       '-DCONSOLE_PRISM_MODULES=\"SIPoint\",\"Tropo\"' # ==> deploy SIPoint & Tropo
     else
-      if node[:prism][:install_sip_point]
+      if node['prism']['install_sip_point']
         '-DCONSOLE_PRISM_MODULES=\"SIPoint\"' # ==> deploy SIPoint
-      elsif node[:prism][:install_tropo]
+      elsif node['prism']['install_tropo']
         '-DCONSOLE_PRISM_MODULES=\"Tropo\"' # ==> deploy Tropo
       else
         #'-DCONSOLE_PRISM_MODULES=\"\",\"\"' Should work but doesnt, FML InstallAnywhere
