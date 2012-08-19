@@ -227,8 +227,9 @@ default['prism']['log4j']['max_backup_index']                      =  30
 default['prism']['log4j']['max_syslog_msg_size']                   =  nil
 
 
+# When using a license.lic file you would define it here, this really is only applicable when using a super cool Voxeo unlocked license.  Generally licenses are bound to the machine.
 
-default[:prism][:license_file]                                   =  "license_25_ports.lic"
+default['prism']['license_file']                                   =  nil
 
 default['prism']['h2_bind_address']                                =  "127.0.0.1"
 

@@ -3,6 +3,8 @@
 
 # REQUIREMENTS:
 
+  The cookbook by default comes with no license file, which means you only get the default 2 port license.  If you need a larger licese for evaluation purposes please contact Voxeo Labs and we would be more then happy to get you an evaluation license.
+
 # ATTRIBUTES:
 
 
@@ -84,15 +86,10 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
     node[:prism][:as][:rmi_password]
 
 
-# USAGE:
-
-Note:  Should include 2 port unlocked license with any public release
-
-
-# Helpers
+# Helpers aliases
 
 ### Prism Helpers
-    ./ptime   #Prism running time
+    ./ptime   # Prism running time
     ./vtime   # VCS Runtime
     ./p       # Prism Alias eg: `p status`
 
@@ -178,5 +175,6 @@ Note:  Should include 2 port unlocked license with any public release
 [2.8.0]
    * Switched from nokogiri to rexml/document for XML parsing
    * Guards around node search in attributes file.  We use this to determin if Tropo is present.
+   * Only use a licnese.lic file if defined [internal use only]
    * Fix foodcritic FC24
    * Fix FC01 error

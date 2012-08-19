@@ -67,13 +67,17 @@ cookbook_file "/etc/profile.d/voxeo.sh" do
   group g
 end
 
+
 cookbook_file "#{prism_path}/conf/license.lic" do
-  source node[:prism][:license_file]
+  source node['prism']['license_file']
   mode 0644
   owner o
   group g
   notifies :restart, "service[voxeo-as]"
   notifies :restart, "service[voxeo-ms]"
+  only_if do
+   node['prism']['license_file']
+  end
 end
 
 %w{var/run/ var/lock/subsys/}.each do |dir|
