@@ -175,6 +175,9 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
 [2.8.0]
    * Switched from nokogiri to rexml/document for XML parsing
    * Guards around node search in attributes file.  We use this to determin if Tropo is present.
+
+[2.8.1]
    * Only use a licnese.lic file if defined [internal use only]
+   * by default don't delete the prism demo application
    * Fix foodcritic FC24
    * Fix FC01 error

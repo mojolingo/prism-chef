@@ -233,6 +233,7 @@ default['prism']['license_file']                                   =  nil
 
 default['prism']['h2_bind_address']                                =  "127.0.0.1"
 
+default['prism']['delete_prism_demo']                              =  false
 # SNMP Config
 default['prism']['snmp_enabled']                                   =  false
 default['prism']['snmp_tcp_listen_address']                        =  "0.0.0.0"

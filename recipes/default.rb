@@ -51,8 +51,18 @@ script "install_prism" do
   code <<-EOH
   ./#{prism_binary} -i silent -DUSER_INSTALL_DIR=#{prism_path} -DSTART_SERVICES=0 #{Prism.installer_options(node)}
   /etc/init.d/voxeo-smanager stop
-  rm -f #{prism_path}/apps/PrismDemoApp.sar
   EOH
+  notifies :delete, "file[#{prism_path}/apps/PrismDemoApp.sar]", :immediately
+end
+
+file "#{prism_path}/apps/PrismDemoApp.sar" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :nothing
+  only_if do
+    node['prism']['delete_prism_demo']
+  end
 end
 
 # Create Prism user
