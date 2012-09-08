@@ -1,0 +1,6 @@
+files/default/*
+!files/default/cacerts
+!files/default/ssl_ca_bundle.crt
+!files/default/license_4_ports.lic
+!files/default/prism.sh
+

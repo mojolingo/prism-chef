@@ -182,3 +182,7 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
    * Dry'ed up a few blocks related to voxeo-as,voxeo-ms, and voxeo-smanager.
    * Fix foodcritic FC24
    * Fix FC01 error
+
+[2.8.2]
+   * Renamed voxeo.sh alias file to prism.sh
+   * Added default 4 port license file (Prism <= 12.x)

@@ -69,8 +69,8 @@ user o do
   supports :manage_home => true
 end
 
-cookbook_file "/etc/profile.d/voxeo.sh" do
-  source "voxeo.sh"
+cookbook_file "/etc/profile.d/prism.sh" do
+  source "prism.sh"
   mode 0770
   owner o
   group g
