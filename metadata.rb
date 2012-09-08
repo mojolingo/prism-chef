@@ -5,4 +5,4 @@ description      "Installs/Configures Prism application server http://voxeo.com/
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "2.8.2"
 name             "prism"
-%w(jmxsh artifacts).each{|lib| depends lib}
+%w(jmxsh).each{|lib| depends lib}

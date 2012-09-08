@@ -1,6 +1,5 @@
 class Chef::Recipe
   include Prism
-  include Artifacts
 end
 
 #

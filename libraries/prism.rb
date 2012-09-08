@@ -4,6 +4,12 @@ module Prism
 
 
   def self.get_header(uri,header='x-amz-meta-sha256-hash', port=80)
+    hash = `curl -Is #{uri} | grep "#{header}" | awk '{print $2}'`.chomp
+    Chef::Log.info("[get_header('#{uri}')] => (#{hash})")
+    return hash
+  end
+
+  def self.get_header(uri,header='x-amz-meta-sha256-hash', port=80)
     uri = URI(uri)
     Net::HTTP.start(uri.host, uri.port) do |http|
       request = Net::HTTP::Head.new uri.request_uri

@@ -10,7 +10,6 @@
 
 class Chef::Recipe
   include Prism
-  include Artifacts
 end
 
 include_recipe "jmxsh"
@@ -39,7 +38,7 @@ remote_file "#{prism_tmp}/#{prism_binary}" do
   source artifact_url
   mode 0744
   notifies :run, "script[install_prism]", :immediately
-  checksum Artifacts.get_header(artifact_url)
+  checksum Prism.get_header(artifact_url)
 end
 
 script "install_prism" do
