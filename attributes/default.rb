@@ -32,13 +32,13 @@ default['prism']['cust_home']             =  "/custhome"
 
 # VXLAUNCH.XML SECTION
 ##############################################
-default['prism']['runtime_mode']                             =  "server"
+default['prism']['runtime_mode']                               =  "server"
 
-default['prism']['VxLaunch']['extra_services']                =  []
+default['prism']['VxLaunch']['extra_services']                 =  []
 
-default['prism']['VxLaunch']['http_control_port']             =  10086
+default['prism']['VxLaunch']['http_control_port']              =  10086
 
-default['prism']['ld_library_extras']                         =  []
+default['prism']['ld_library_extras']                          =  []
 default['prism']['VxLaunch']['as']['cache']                    =  60
 default['prism']['VxLaunch']['as']['default_read_timeout']     =  60000
 default['prism']['VxLaunch']['as']['default_connect_timeout']  =  60000
@@ -210,45 +210,45 @@ default['prism']['config']['Rtp']['DTMFPause']                      =  240
 
 # Prism AS Log4j config
 if Chef::Config[:solo]
-  default['prism']['include_tropo_logger']                         = !node.run_list.expand("_default","disk").recipes.select{|x| x=~/tropo/}.empty?
+  default['prism']['include_tropo_logger']                          =  !node.run_list.expand("_default","disk").recipes.select{|x| x=~/tropo/}.empty?
 else
-  default['prism']['include_tropo_logger']                         = !node.run_list.expand(node.chef_environment).recipes.select{|x| x=~/tropo/}.empty?
+  default['prism']['include_tropo_logger']                          =  !node.run_list.expand(node.chef_environment).recipes.select{|x| x=~/tropo/}.empty?
 end
 
 
-default['prism']['syslog_servers']                                 =  ["127.0.0.1:9977"]
-default['prism']['log4j']['root_logger']                           =  %w(DEBUG FILE)
-default['prism']['log4j']['syslog']['threshold']                   =  "DEBUG"
-default['prism']['log4j']['syslog']['tcp']                         =  false
-default['prism']['log4j']['append']                                =  true
-default['prism']['log4j']['max_file_size']                         =  '100MB'
-default['prism']['log4j']['max_backup_index']                      =  30
-default['prism']['log4j']['max_syslog_msg_size']                   =  nil
+default['prism']['syslog_servers']                                  =  ["127.0.0.1:9977"]
+default['prism']['log4j']['root_logger']                            =  %w(DEBUG FILE)
+default['prism']['log4j']['syslog']['threshold']                    =  "DEBUG"
+default['prism']['log4j']['syslog']['tcp']                          =  false
+default['prism']['log4j']['append']                                 =  true
+default['prism']['log4j']['max_file_size']                          =  '100MB'
+default['prism']['log4j']['max_backup_index']                       =  30
+default['prism']['log4j']['max_syslog_msg_size']                    =  nil
 
 
 # When using a license.lic file you would define it here, this really is only applicable when using a super cool Voxeo unlocked license.  Generally licenses are bound to the machine.
 
-default['prism']['license_file']                                   =  nil
+default['prism']['license_file']                                    =  "license_4_ports.lic"
 
-default['prism']['h2_bind_address']                                =  "127.0.0.1"
+default['prism']['h2_bind_address']                                 =  "127.0.0.1"
 
-default['prism']['delete_prism_demo']                              =  false
+default['prism']['delete_prism_demo']                               =  false
 # SNMP Config
-default['prism']['snmp_enabled']                                   =  false
-default['prism']['snmp_tcp_listen_address']                        =  "0.0.0.0"
-default['prism']['snmp_udp_listen_address']                        =  "0.0.0.0"
-default['prism']['snmp_udp_port']                                  =  "12345"
-default['prism']['snmp_tcp_port']                                  =  "1161"
-default['prism']['community_name']                                 =  "prism.server"
+default['prism']['snmp_enabled']                                    =  false
+default['prism']['snmp_tcp_listen_address']                         =  "0.0.0.0"
+default['prism']['snmp_udp_listen_address']                         =  "0.0.0.0"
+default['prism']['snmp_udp_port']                                   =  "12345"
+default['prism']['snmp_tcp_port']                                   =  "1161"
+default['prism']['community_name']                                  =  "prism.server"
 
 # Sip Registration
-default['prism']['registration_address']                           =  nil
-default['prism']['registration_user']                              =  nil
-default['prism']['registration_authuser']                          =  nil
-default['prism']['registration_password']                          =  nil
-default['prism']['registration_domain']                            =  nil
-default['prism']['registration_contact']                           =  nil
-default['prism']['gateway_address']                                =  nil
-default['prism']['gateway_transport']                              =  "udp"
-default['prism']['registration_expiration']                        =  3600
+default['prism']['registration_address']                            =  nil
+default['prism']['registration_user']                               =  nil
+default['prism']['registration_authuser']                           =  nil
+default['prism']['registration_password']                           =  nil
+default['prism']['registration_domain']                             =  nil
+default['prism']['registration_contact']                            =  nil
+default['prism']['gateway_address']                                 =  nil
+default['prism']['gateway_transport']                               =  "udp"
+default['prism']['registration_expiration']                         =  3600
 

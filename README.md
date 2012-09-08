@@ -185,5 +185,5 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
 
 [2.8.2]
    * Renamed voxeo.sh alias file to prism.sh
-   * Added default 4 port license file (Prism <= 12.x)
+   * Added default 4 port license file (Prism <= 12.x) [AUTOMATION-99]
    * Removed Artifacts cookbook dependency
