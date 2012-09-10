@@ -9,21 +9,20 @@ module Prism
     return hash
   end
 
-  def self.get_header(uri,header='x-amz-meta-sha256-hash', port=80)
-    uri = URI(uri)
-    Net::HTTP.start(uri.host, uri.port) do |http|
-      request = Net::HTTP::Head.new uri.request_uri
-      response = http.request request
-      result =  response[header]
-      Chef::Log.info("[CHEF] #{header} -> (#{result})")
-      return result
-    end
-
-  rescue Timeout::Error, Errno::EHOSTDOWN, Errno::ECONNREFUSED => e
-    Chef::Log.warn("[CHEF] get_header  #{e}")
-    Chef::Log.warn("[CHEF] #{header} -> (0)")
-    return 0
-  end
+  # def self.get_header(uri,header='x-amz-meta-sha256-hash', port=80)
+  #   uri = URI(uri)
+  #   Net::HTTP.start(uri.host, uri.port) do |http|
+  #     request = Net::HTTP::Head.new uri.request_uri
+  #     response = http.request request
+  #     result =  response[header]
+  #     Chef::Log.info("[CHEF] #{header} -> (#{result})")
+  #     return result
+  #   end
+  # rescue Timeout::Error, Errno::EHOSTDOWN, Errno::ECONNREFUSED => e
+  #   Chef::Log.warn("[CHEF] get_header  #{e}")
+  #   Chef::Log.warn("[CHEF] #{header} -> (0)")
+  #   return 0
+  # end
 
   #http://evolution.voxeo.com/ticket/1673456
   def self.requires_glibc_patch(arch)
