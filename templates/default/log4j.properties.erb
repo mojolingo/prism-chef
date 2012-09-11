@@ -6,8 +6,6 @@ log4j.logger.com.tropo=DEBUG, FILE_APP<%= ", " + @syslog_servers.count.times.map
 log4j.logger.com.voxeo=DEBUG, FILE_APP<%= ", " + @syslog_servers.count.times.map{|i| "SYSLOG#{i}"}.join(", ") unless @syslog_servers.empty? %>
 <% end -%>
 
-
-(1..@syslog_servers.count).collect{|x| "SYSLOG#{x-1}"}.join(", ")
 log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
 log4j.appender.CONSOLE.Target=System.out
 log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout

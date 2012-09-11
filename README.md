@@ -191,3 +191,5 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
 [2.8.3]
    * Remove net/http method in library, need to look into why thats failing but just went w/ curl for a short term fix
 
+[2.8.4]
+   * Removed extraneous erb line from log4j.properties
