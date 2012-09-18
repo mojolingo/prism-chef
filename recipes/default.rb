@@ -35,6 +35,8 @@ end
 
 ###############
 
+package 'unzip'
+
 remote_file "#{prism_tmp}/#{prism_binary}" do
   source artifact_url
   mode 0744
