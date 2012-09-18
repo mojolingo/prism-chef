@@ -15,6 +15,7 @@ end
 include_recipe "jmxsh"
 
 artifact_url =  node['prism']['artifacts']['url']
+artifact_checksum = node['prism']['artifacts']['checksum']
 prism_binary =  artifact_url.split("/").last
 prism_tmp    =  Chef::Config[:file_cache_path]
 prism_path   =  node['prism']['path']['prism']
@@ -38,7 +39,7 @@ remote_file "#{prism_tmp}/#{prism_binary}" do
   source artifact_url
   mode 0744
   notifies :run, "script[install_prism]", :immediately
-  checksum Prism.get_header(artifact_url)
+  checksum artifact_checksum
 end
 
 script "install_prism" do
