@@ -38,7 +38,6 @@ script "install_prism" do
   cwd prism_tmp
   code <<-EOH
   ./#{prism_binary} -i silent -DUSER_INSTALL_DIR=#{prism_path} -DSTART_SERVICES=0 #{Prism.installer_options(node)}
-  /etc/init.d/voxeo-smanager stop
   EOH
   not_if { File.directory? prism_path }
   notifies :delete, "file[#{prism_path}/apps/PrismDemoApp.sar]", :immediately
