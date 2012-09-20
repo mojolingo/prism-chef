@@ -181,6 +181,8 @@ default['prism']['asr_engines']    =  [
                                       {:lang  =>  "en-us",:engine  =>  "vxsrepr"}
                                     ]
 
+default['prism']['use_sensory'] = false
+
 case node['platform']
   when "mac_os_x" then default['prism']['config']['TTS']['platform']  =  "osx"
   when "redhat","centos", "amazon","scientific","ubuntu" then default['prism']['config']['TTS']['platform']  =  "linux"

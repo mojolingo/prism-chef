@@ -314,7 +314,8 @@ template "#{prism_path}/conf/sipmethod.xml" do
   :use_loop_back_address     =>  node['prism']['use_loop_back_address'],
   :udp_network_access_points =>  node['prism']['sipmethod']['NetworkAccessPoint']['udp'],
   :tcp_network_access_points =>  node['prism']['sipmethod']['NetworkAccessPoint']['tcp'],
-  :peers                     =>  node['prism']['cluster_peers']
+  :peers                     =>  node['prism']['cluster_peers'],
+  :use_sensory               =>  node['prism']['use_sensory']
   )
   mode 0664
 
