@@ -271,7 +271,8 @@ template "#{prism_path}/conf/config.xml" do
     :public_ipv4    =>  node['prism']['public_ipv4'],
     :netmask        =>  node['prism']['netmask'],
     :tts_engines    =>  node['prism']['tts_engines'],
-    :asr_engines    =>  node['prism']['asr_engines']
+    :asr_engines    =>  node['prism']['asr_engines'],
+    :use_sensory    =>  node['prism']['use_sensory']
   })
 
   notifies :restart, resources(:service => "voxeo-ms")
@@ -314,8 +315,7 @@ template "#{prism_path}/conf/sipmethod.xml" do
   :use_loop_back_address     =>  node['prism']['use_loop_back_address'],
   :udp_network_access_points =>  node['prism']['sipmethod']['NetworkAccessPoint']['udp'],
   :tcp_network_access_points =>  node['prism']['sipmethod']['NetworkAccessPoint']['tcp'],
-  :peers                     =>  node['prism']['cluster_peers'],
-  :use_sensory               =>  node['prism']['use_sensory']
+  :peers                     =>  node['prism']['cluster_peers']
   )
   mode 0664
 
