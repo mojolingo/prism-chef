@@ -34,9 +34,9 @@ function pec() {
   vi /opt/voxeo/prism/conf/config.xml
 }
 
-function pet() {
-  vi /opt/voxeo/prism/server/apps/tropo/WEB-INF/classes/tropo.xml
-}
+# function pet() {
+#   vi /opt/voxeo/prism/server/apps/tropo/WEB-INF/classes/tropo.xml
+# }
 
 
 #
