@@ -196,3 +196,6 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
 
 [2.8.5]
    * Remove Tropo helper functions from prism.sh ( moving these into tropo recipe )
+
+[2.8.6]
+   * Add applicationID to log4j conversion patterns
