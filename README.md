@@ -3,7 +3,7 @@
 
 # REQUIREMENTS:
 
-  The cookbook by default comes with no license file, which means you only get the default 2 port license.  If you need a larger licese for evaluation purposes please contact Voxeo Labs and we would be more then happy to get you an evaluation license.
+  The cookbook by default comes with a 4 port license file which expires at the end of the year (Once that expires I'll update the cookbook with another one ).  If you need a larger licese for evaluation purposes please contact Voxeo Labs and we would be more then happy to get you an evaluation license.
 
 # ATTRIBUTES:
 
@@ -193,3 +193,9 @@ Prism supports sip regisration, and this is of course configurable via Chef.  Th
 
 [2.8.4]
    * Removed extraneous erb line from log4j.properties
+
+[2.8.5]
+   * Remove Tropo helper functions from prism.sh ( moving these into tropo recipe )
+
+[2.8.6]
+   * Add applicationID to log4j conversion patterns

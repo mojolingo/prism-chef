@@ -6,6 +6,8 @@ log4j.logger.com.tropo=DEBUG, FILE_APP<%= ", " + @syslog_servers.count.times.map
 log4j.logger.com.voxeo=DEBUG, FILE_APP<%= ", " + @syslog_servers.count.times.map{|i| "SYSLOG#{i}"}.join(", ") unless @syslog_servers.empty? %>
 <% end -%>
 
+
+(1..@syslog_servers.count).collect{|x| "SYSLOG#{x-1}"}.join(", ")
 log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
 log4j.appender.CONSOLE.Target=System.out
 log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
@@ -19,7 +21,7 @@ log4j.appender.FILE.MaxFileSize=<%=@max_file_size%>
 log4j.appender.FILE.MaxBackupIndex=<%=@max_backup_index%>
 log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
 <% if @include_tropo_logger -%>
-log4j.appender.FILE.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %-5p %X{HostName} TROPO %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] [%t] %m%n
+log4j.appender.FILE.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %-5p %X{HostName} TROPO %X{AccountID}/%X{ApplicationID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] [%t] %m%n
 <% else -%>
 log4j.appender.FILE.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] %m%n
 <% end -%>
@@ -30,7 +32,7 @@ log4j.appender.SYSLOG<%=index%>.SyslogHost=<%= server %>
 log4j.appender.SYSLOG<%=index%>.Threshold=<%= @logging_threshold %>
 log4j.appender.SYSLOG<%=index%>.UseTCP=<%= @use_tcp %>
 log4j.appender.SYSLOG<%=index%>.layout=com.voxeo.logging.EncodedPatternLayout
-log4j.appender.SYSLOG<%=index%>.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %X{HostName} TROPO %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/%X{CallID}/%m%n
+log4j.appender.SYSLOG<%=index%>.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %X{HostName} TROPO %X{AccountID}/%X{ApplicationID}/%X{SessionGUID}/%X{SessionNumber}/1/%X{CallID}/%m%n
 <%= "log4j.appender.SYSLOG#{index}.layout.MaxMessageSize=#{@max_syslog_msg_size}" if @max_syslog_msg_size %>
 <% end -%>
 
@@ -41,7 +43,7 @@ log4j.appender.FILE_APP.Append=true
 log4j.appender.FILE_APP.MaxFileSize=30MB
 log4j.appender.FILE_APP.MaxBackupIndex=100
 log4j.appender.FILE_APP.layout=org.apache.log4j.PatternLayout
-log4j.appender.FILE_APP.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %-5p %X{HostName} TROPO %X{AccountID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] [%t] %m%n
+log4j.appender.FILE_APP.layout.ConversionPattern=%d{MMM dd HH:mm:ss.SSS} %-5p %X{HostName} TROPO %X{AccountID}/%X{ApplicationID}/%X{SessionGUID}/%X{SessionNumber}/1/[%X{CallID}] [%t] %m%n
 <% end -%>
 
 log4j.logger.com.micromethod.sipmethod.server.http=INFO
