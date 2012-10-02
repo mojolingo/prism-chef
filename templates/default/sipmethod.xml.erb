@@ -11,7 +11,7 @@
   <Container osgi="<%=@osgi_enabled%>"/>
 <%end -%>
   <MediaControl>
-    <MS uri="mrcp://<%="#{@mrcp_ip}:#{@mrcp_port}"%>" useLoopBackAddress="<%=@use_loop_back_address%>" />
+    <MS uri="mrcp://<%="#{@mrcp_ip}:#{@mrcp_port}"%>" useLoopBackAddress="<%=@use_loop_back_address%>">
       <ASR>
         <% @asr_engines.each do |engine| %>
           <Langs>
