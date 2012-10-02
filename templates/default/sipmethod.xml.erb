@@ -15,7 +15,7 @@
       <ASR>
         <% @asr_engines.each do |engine| %>
           <Langs>
-            <Attribute name="<%= engine[:lang] %>"><%= engine[:lang] %></Attribute>
+            <Attribute name="<%= engine[:lang] %>"><%= engine[:grammar_translator] %></Attribute>
           </Langs>
         <% end %>
       </ASR>

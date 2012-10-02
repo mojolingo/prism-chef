@@ -177,9 +177,9 @@ default['prism']['config']['TTS']['VoiceMappings']                  =  [
 default['prism']['tts_engines']                                     =  []
 
 # OffBox ASR Engines
-default['prism']['asr_engines']    =  [
-                                      {:lang  =>  "en-us",:engine  =>  "vxsrepr"}
-                                    ]
+default['prism']['asr_engines'] = [
+                                    {:lang  =>  "en-us", :engine => "vxsrepr", :grammar_translator => 'prophecy'}
+                                  ]
 
 default['prism']['use_sensory'] = false
 
