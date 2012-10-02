@@ -12,6 +12,14 @@
 <%end -%>
   <MediaControl>
     <MS uri="mrcp://<%="#{@mrcp_ip}:#{@mrcp_port}"%>" useLoopBackAddress="<%=@use_loop_back_address%>" />
+      <ASR>
+        <% @asr_engines.each do |engine| %>
+          <Langs>
+            <Attribute name="<%= engine[:lang] %>"><%= engine[:lang] %></Attribute>
+          </Langs>
+        <% end %>
+      </ASR>
+    </MS>
   </MediaControl>
 <% if node[:prism][:sipmethod][:bosh][:enabled] -%>
   <BOSH boshurl="<%=@bosh_url%>"/>

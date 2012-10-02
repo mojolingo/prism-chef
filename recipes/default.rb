@@ -289,6 +289,7 @@ template "#{prism_path}/conf/sipmethod.xml" do
   :mrcp_ip                   =>  node['prism']['local_ipv4'],
   :bosh_url                  =>  node['prism']['sipmethod']['bosh']['url'],
   :mrcp_port                 =>  node['prism']['mrcp']['port'],
+  :asr_engines               =>  node['prism']['asr_engines']
   :address                   =>  node['prism']['local_ipv4'],
   :web_dirs                  =>  [node['prism']['cust_home']],
   :gateway_address           =>  node['prism']['gateway_address'],
