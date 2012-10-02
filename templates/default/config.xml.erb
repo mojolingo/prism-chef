@@ -341,7 +341,7 @@
 
         <category name="com.sensory">
           <item name="useendpointer">0</item>
-          <category name="<%= @asr_engines.find { |e| e[:engine] == 'vcsresensory' }[:lang] %>">
+          <category name="<%= @asr_engines.find { |e| e[:engine] == 'vxsresensory' }[:lang] %>">
             <item name="acousticmodel"><%= @prism_path %>/data/ASR/sensory/en_us_8kHz_v8/nn_en_us_mfcc_8k_15_big_250_v4.7.raw</item>
             <item name="pronunsmodel"><%= @prism_path %>/data/ASR/sensory/en_us_8kHz_v8/lts_en_us_9.3.raw</item>
           </category>
