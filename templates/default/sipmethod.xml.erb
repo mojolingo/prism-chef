@@ -18,6 +18,11 @@
             <Attribute name="<%= engine[:lang] %>"><%= engine[:grammar_translator] %></Attribute>
           </Langs>
         <% end %>
+        <Translate-Grammars>
+          <% @asr_engines.each do |engine| %>
+            <Attribute name="<%= engine[:lang] %>"><%= engine.has_key?(:translate_grammars) ? engine[:translate_grammars] : true %></Attribute>
+          <% end %>
+        </Translate-Grammars>
       </ASR>
     </MS>
   </MediaControl>
