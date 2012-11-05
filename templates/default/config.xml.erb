@@ -181,6 +181,7 @@
   <item name="PusherFolder"> <%= @prism_path %>/server/apps/com.voxeo.prism.msctrl/MRCP/Recordings </item>
   <item name="InputBufferSizeMs">90</item>
   <item name="OutputBufferSizeMs">90</item>
+  <item name="UseLegacyOA"><%= node[:prism][:mrcp][:use_legacy_oa] ? 1 : 0 %></item>
   <category name="Rtp" reference="/RTP"/>
   <category name="TTS" reference="/TTS"/>
  </category>

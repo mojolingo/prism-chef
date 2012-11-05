@@ -194,6 +194,7 @@ default['prism']['mrcp']['port']                                    =  10074
 default['prism']['mcrp']['force_call_recording_debug']              =  false
 default['prism']['mcrp']['listen_ip']                               =  "0.0.0.0"
 default['prism']['mcrp']['log_level']                               =  8
+default['prism']['mcrp']['use_legacy_oa']                           =  false
 
 default['prism']['vcs']['proxies']                                  =  []
 
