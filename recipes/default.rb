@@ -66,7 +66,7 @@ cookbook_file "/etc/profile.d/prism.sh" do
 end
 
 %w(glibc glibc zlib libidn libuuid libgcc libstdc++).each do |lib|
-  package lib do
+  yum_package lib do
     action :install
     arch "i686"
     only_if do
