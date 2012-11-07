@@ -34,6 +34,8 @@ default['prism']['cust_home']             =  "/custhome"
 ##############################################
 default['prism']['runtime_mode']                               =  "server"
 
+default['prism']['32bit_deps']                                 =  false
+
 default['prism']['VxLaunch']['extra_services']                 =  []
 
 default['prism']['VxLaunch']['http_control_port']              =  10086

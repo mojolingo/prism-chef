@@ -65,6 +65,14 @@ cookbook_file "/etc/profile.d/prism.sh" do
   group g
 end
 
+%w(glibc.i686 glibc.i686 zlib.i686 libidn.i686 libuuid.i686 libgcc.i686 libstdc++.i686).each do |lib|
+  package lib do
+    action :install
+    only_if do
+      node['prism']['32bit_deps']
+    end
+  end
+end
 
 cookbook_file "#{prism_path}/conf/license.lic" do
   source node['prism']['license_file']
