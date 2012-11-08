@@ -32,6 +32,16 @@ remote_file "#{prism_tmp}/#{prism_binary}" do
   checksum artifact_checksum
 end
 
+%w(glibc glibc zlib libidn libuuid libgcc libstdc++).each do |lib|
+  yum_package lib do
+    action :install
+    arch "i686"
+    only_if do
+      node['prism']['32bit_deps']
+    end
+  end
+end
+
 script "install_prism" do
   interpreter "bash"
   user "root"
@@ -63,16 +73,6 @@ cookbook_file "/etc/profile.d/prism.sh" do
   mode 0770
   owner o
   group g
-end
-
-%w(glibc glibc zlib libidn libuuid libgcc libstdc++).each do |lib|
-  yum_package lib do
-    action :install
-    arch "i686"
-    only_if do
-      node['prism']['32bit_deps']
-    end
-  end
 end
 
 cookbook_file "#{prism_path}/conf/license.lic" do
