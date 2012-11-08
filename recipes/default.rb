@@ -32,6 +32,13 @@ remote_file "#{prism_tmp}/#{prism_binary}" do
   checksum artifact_checksum
 end
 
+script "upgrade libuuid" do
+  interpreter "bash"
+  user "root"
+  cwd prism_tmp
+  code "yum upgrade -y libuuid"
+end
+
 %w(glibc glibc zlib libidn libuuid libgcc libstdc++).each do |lib|
   yum_package lib do
     action :install
